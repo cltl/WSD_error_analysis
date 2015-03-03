@@ -1,41 +1,29 @@
 #!/usr/bin/env python
 
-
-from lib import sval_systems_reader, wordnet_reader
-
-
-#import sval_util
 import os
 import cPickle
 import sys
-from KafNafParserPy import KafNafParser
+
 from collections import defaultdict
-#from frequency import create_freq_dict
+
+from lib import sval_systems_reader, wordnet_reader, create_freq_dict, get_naf_filename_for_token, get_freqclass_of_freq
+from extlib.KafNafParserPy import KafNafParser
+
 
 os.environ['LC_ALL'] = 'en_US.UTF-8'
 __this_dir__ =  os.path.dirname(os.path.realpath(__file__))
 
 wn_version = {}
 wn_version['sval2'] = '1.7.1'
+wn_version['sval3'] = '1.7.1'
+wn_version['semeval2007'] = '2.1'
+wn_version['semeval2010'] = '3.0'
+wn_version['semeval2013'] = '3.0'
 
-def load_copula_skeys(corpus_id):
-    filename = None
-    if corpus_id == 'sval2':
-        filename = 'copula_sense_keys.wn171.txt' 
-    if corpus_id == 'sval3':
-        filename = 'copula_sense_keys.wn171.txt' 
-    else:
-        pass
-    
-    copula_skeys = set()
-    if filename is not None:
-        fic = open(filename)
-        for line in fic:
-            copula_skeys.add(line.strip())
-        fic.close()
-    return copula_skeys
-        
-    
+copula_keys = {}
+copula_keys['sval2'] = set(['appear%2:39:00::','act%2:29:00::','be%2:42:03::','become%2:30:00::','go%2:30:04::','grow%2:30:03::'])    
+copula_keys['sval3'] = copula_keys['sval2']
+
 
 def get_polysemy_class(num_senses):
     """
@@ -110,23 +98,26 @@ def create_data_matrix(corpus,output_file):
 
     my_wn_reader = wordnet_reader(os.path.join(__this_dir__,'data','wordnets'))
     index_lemma_pos_to_senses = my_wn_reader.get_index_lemma_to_senses(wn_version[corpus])
-    sys.exit(0)
 
     #This will store the mapping (lemma) --> frequency
     lemma_to_freq = create_freq_dict('sum', inspect=False, log_it=False)
-    
+
+   
     #Set of copula skyes
-    copula_skeys = load_copula_skeys(corpus)
-    
+    if corpus in copula_keys:
+        copula_skeys = copula_keys[corpus]
+    else:
+        copula_skeys = set()
+        
     number_tokens_in_sentence = defaultdict(int)
     total_senses_in_sentence = defaultdict(int)
-    
+
     # We will store here in memory the naf objects, so we don't need to parse more than once each file
     naf_objects = {}
     # Get the information for each token identifier
     for token_id, skeys in key.items():
         ## The sentence where the token appears
-        naf_filename = sval_util.get_naf_filename_for_token(corpus,token_id)
+        naf_filename = get_naf_filename_for_token(__this_dir__, corpus,token_id)
         map_sval_id_naf_id = sent_for_tokenid = sentences = token_for_tokenid = None
         if naf_filename not in naf_objects:
             naf_obj = KafNafParser(naf_filename)
@@ -143,12 +134,12 @@ def create_data_matrix(corpus,output_file):
         
         ##The lemma ########
         lemma = pos = ''
-        if corpus == 'sval2010':
-            guessed_skey,lemma,guessed_sense,d  = sval_util.get_lemma_for_ili(skeys[0],corpus,value_token)
+        if corpus == 'semeval2010':
+            guessed_skey,lemma,guessed_sense,d  = my_wn_reader.get_lemma_for_ili(skeys[0],corpus,value_token, wn_version[corpus])
             pos = skeys[0][-1]
         else:
-            lemma = sval_util.get_lemma_for_sensekey(skeys[0])
-            pos = sval_util.get_pos_for_sensekey(skeys[0])
+            lemma = my_wn_reader.get_lemma_for_sensekey(skeys[0])
+            pos = my_wn_reader.get_pos_for_sensekey(skeys[0])
              
         data_for_token['pos'] = pos
         data_for_token['lemma'] = lemma
@@ -212,7 +203,7 @@ def create_data_matrix(corpus,output_file):
         
         # The frequency class
         relative_frequency = lemma_to_freq.get(lemma,-1)
-        frequency_class = sval_util.get_freqclass_of_freq(relative_frequency)
+        frequency_class = get_freqclass_of_freq(relative_frequency)
         data_for_token['rel_freq'] = relative_frequency
         data_for_token['freq_class'] = frequency_class
         #######################################

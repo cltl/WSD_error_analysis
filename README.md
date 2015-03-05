@@ -14,8 +14,7 @@
     * run plots_gold_standards.sh for more information about how to use the script
 
 ##In order to recreate data matrices (this is already done in install.sh)##
-run from shell:
-    * python create_data_matrix.py sval2|sval3|semeval2007|semeval2010|semeval2013 matrix_filename
+run: python create_data_matrix.py sval2|sval3|semeval2007|semeval2010|semeval2013 matrix_filename
 
 ##Contact##
 * Ruben Izquierdo Bevia

@@ -3,9 +3,8 @@
 ##Installation##
 * Clone this repository:
     * cd repository_folder
-    * bash install.sh
-* For more information about dependencies:
-    * see INSTALL.md (which is placed in the same folder as this README)
+    * see INSTALL.md (which is placed in the same folder as this README) for information about dependencies
+    * bash install.sh (takes about 5 minutes)
 
 ##USAGE##
 * logistic regression:

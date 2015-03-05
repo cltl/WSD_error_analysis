@@ -2,11 +2,11 @@
 
 ##Installation##
 General instructions:
-    * Clone the repository
-    * cd repository_folder
-    * bash install.sh
+* Clone the repository
+* cd repository_folder
+ bash install.sh
 For more information about dependencies:
-    * see INSTALL.md (which is placed in the same folder as this README)
+* see INSTALL.md (which is placed in the same folder as this README)
 
 ##USAGE##
 * logistic regression:

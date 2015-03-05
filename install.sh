@@ -3,8 +3,6 @@
 here=$(pwd)
 
 #DATA FOLDER
-rm -rf $here/data 2> /dev/null
-mkdir $here/data
 cd data
 git clone https://github.com/rubenIzquierdo/sval_systems
 git clone https://github.com/rubenIzquierdo/wsd_corpora

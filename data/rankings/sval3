@@ -1,0 +1,39 @@
+{
+ '1.GAMBL-AW.all-words-test-predictions': 1,
+ '1.UNTaw.UNT.SenseLearner.answers.txt': 2,
+ '1.kuaw.ans': 3,
+ '1.R2D2:_English-all-words.R2D2EnglishAllWords.txt': 4,
+ '1.Meaning-allwords.meaning.txt.formatted': 5,
+ '1.Meaning_simple.meaning_simple.txt.formatted': 6,
+
+ '1.LCCaw.english-all-words.answers': 8,
+ '1.UJAEN2.resultados.EAW.txt.txt': 9,
+ '1.IRST-DDD-00.results-DDD-00.txt': 10,
+ '1.Prob5.prob5.out': 11,
+ '1.Prob4.prob4.out': 12, 
+ '1.Prob3.prob3.out': 13,
+ '1.DFA-Unsup-AW.english-all-words1.xml.txt': 14,
+ '1.IRST-DDD-LSI.ddd-lsi-cs50-th05s.txt': 15,
+ '1.upv-unige-CIAOSENSO-aw.results_senseval3_eaw.xml.txt': 16,
+ '1.system3.system3.txt': 17,
+ '1.upv-unige-CIAOSENSO2-aw.results_senseval3_eaw2.xml.txt': 18,
+ '1.system1.system1.txt': 19,
+ '1.IRST-DDD-09.results-DDD-09.txt': 20,
+
+ '1.clr04-aw.clr-aw.xml.txt': 22,
+ '1.system2.system2.txt': 23,
+ '1.DLSI-UA-all-Nosu.ALL_WORDS_dom.txt': 25,
+ 
+ '1.KUNLP-eng-all.KUNLP.eng.all': 'u',
+ '1.autoPSNVs.systemautoPSNVsformat2.txt': 'u',
+
+ '1.autoPS.systemautoPSformat1': 'u',
+ '1.DLSI-UA-all-Nosu.ALL_WORDS_dom1.txt': 'u',
+ '1.upv-eaw.upv-eaw.xml.txt': 'u',
+ '1.DFA-Unsup-AW.english-all-words2.xml.txt': 'u',
+  '1.DFA-Unsup-AW.english-all-words.xml.txt': 'u',
+ '1.upv-eaw.upv-eaw2.xml.txt': 'u',
+ '1.autoPS.systemautoPSformat2.txt': 'u',
+  '1.autoPSNVs.systemautoPSNVsformat1': '',
+ 
+ }

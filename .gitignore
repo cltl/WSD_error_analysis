@@ -1,4 +1,5 @@
 *~
 *.pyc
-data
+data/wordnets
+data/sval_systems
 extlib

@@ -34,12 +34,12 @@ git clone https://github.com/cltl/KafNafParserPy
 cd ..   #BACK TO $here
 
 #create matrices (takes a few minutes)
-mkdir -p data/matrices
-python create_data_matrix.py sval2 data/matrices/sval2_matrix.bin > /dev/null 2> /dev/null
-python create_data_matrix.py sval3 data/matrices/sval3_matrix.bin > /dev/null 2> /dev/null
-python create_data_matrix.py semeval2007 data/matrices/sval2007_matrix.bin > /dev/null 2> /dev/null
-python create_data_matrix.py semeval2010 data/matrices/sval2010_matrix.bin
-python create_data_matrix.py semeval2013 data/matrices/sval2013_matrix.bin > /dev/null 2> /dev/null
+#mkdir -p data/matrices
+#python create_data_matrix.py sval2 data/matrices/sval2_matrix.bin > /dev/null 2> /dev/null
+#python create_data_matrix.py sval3 data/matrices/sval3_matrix.bin > /dev/null 2> /dev/null
+#python create_data_matrix.py semeval2007 data/matrices/sval2007_matrix.bin > /dev/null 2> /dev/null
+#python create_data_matrix.py semeval2010 data/matrices/sval2010_matrix.bin
+#python create_data_matrix.py semeval2013 data/matrices/sval2013_matrix.bin > /dev/null 2> /dev/null
 
 #create output folder
 mkdir -p output/gs_analysis

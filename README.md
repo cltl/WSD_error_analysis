@@ -1,4 +1,6 @@
-#WSD Logistic Regression#
+#WSD Error analysis#
+
+This repo provides various ways to analyse system submissions to wsd competitions.
 
 ##Installation##
 * Clone this repository:

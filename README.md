@@ -13,6 +13,8 @@
     * run plots_gold_standards.sh for more information about how to use the script
 * basic stats gold standards:
     * run provide_stats_gs.sh for more information about how to use the script
+* plots_mfs_vs_notmfs
+    * run plots_mfs_vs_notmfs.sh for more information
 
 ##In order to recreate data matrices (this is already done in install.sh)##
 run: python create_data_matrix.py sval2|sval3|semeval2007|semeval2010|semeval2013 matrix_filename

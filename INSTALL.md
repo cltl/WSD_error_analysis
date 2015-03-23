@@ -9,6 +9,7 @@ work both on Linux and OS X. It will not work on Windows.
 Besides the built-in modules, there is additional library used:
 * lxml (lxml.etree version 3.3.5 was used)
 * matplotlib (version 1.4.2 was used)
+* numpy       (version 1.9.1 of numpy was used)
 
 ## R
 * R version 3.1.1 (2014-07-10) -- "Sock it to Me"

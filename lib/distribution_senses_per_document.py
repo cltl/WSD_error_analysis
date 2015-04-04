@@ -2,7 +2,6 @@
 import cPickle
 import os
 from collections import defaultdict
-import argparse
 
 '''
 this module loads a matrix saved in ../data/matrices
@@ -22,25 +21,15 @@ then this is written to a csv file
 gather stats for approach based on occurences across documents
 
 '''
-#argparse
-
-#parse user input
-parser = argparse.ArgumentParser(description='Writes distribution of senses across documents to csv file in output/distribution_senses_over_documents/<competition>.csv')
-parser.add_argument('-i', dest='competition', help='competition: sval2 | sval3 | sval2007 | sval2010 | sval2013', required=True)
-args = parser.parse_args()
+#parse variables as defined in ../logistic_regression_on_gs.sh
+competition=os.environ['competition']
 
 #create input_path of matrix
 main_dir        = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..'))
 input_path      = os.path.join(main_dir,
                                "data",
                                "matrices",
-                               args.competition+"_matrix.bin")
-
-output_path     = os.path.join(main_dir,
-                               "output",
-                               "distribution_senses_over_documents",
-                               args.competition+".csv") 
-
+                               competition+"_matrix.bin")
 
 #load matrix
 comp,matrix = cPickle.load(open(input_path))
@@ -102,7 +91,7 @@ for instance_identifier,info in matrix.iteritems():
         
 #write to file
 
-with open(output_path,"w") as outfile:
+with open(os.environ['distribution_senses_csv'],"w") as outfile:
     
     headers = ["lemma","pos","num_senses","total_occurences",'mfs',"occurs_in_x_num_docs"]
     for document_identifier in all_document_ids:
@@ -119,10 +108,12 @@ with open(output_path,"w") as outfile:
         senses           = info['senses']
         total_occurences = info['total_occurences']
         mfs_count        = info['mfs']
+        occurs_in_x_num_docs = len(senses)
+        info['occurs_in_x_num_docs'] = occurs_in_x_num_docs
         
         #only write to file is freq is two or more
         if num_senses >= 2:
-            occurs_in_x_num_docs = len(senses)
+             
             output = [lemma,pos,num_senses,total_occurences,mfs_count,occurs_in_x_num_docs]
             
             for document_identifier in all_document_ids:
@@ -140,22 +131,57 @@ with open(output_path,"w") as outfile:
             output = [str(item) for item in output]
             outfile.write("\t".join(output)+"\n")
         
+#create input for R
 
-#send information for user to std out
-print
-print "distribution of lemma senses across documents for competition: %s" % args.competition
-print "have been written to: " + output_path     
+allowed_pos  = os.environ['allowed_pos'].split('_')
+features     = os.environ['features'].split("---")
 
+#remove pos from feature list if only one value inserted
+if len(allowed_pos) == 1:
+    if 'pos' in features:
+        features.remove('pos')
+    
+#read model R script
+with open(os.environ["model_Rscript"]) as infile:
+    raw = infile.read()
 
-
-
-
-
-
-
-
-
-
-
-
-
+#change raw with experiment settings
+raw       = raw.replace("CSV_INPUT",os.environ['output_path'])
+variables = " + ".join(features)
+raw       = raw.replace("VARIABLES",variables)
+with open(os.environ['Rscript'],"w") as outfile:
+    outfile.write(raw)
+    
+#create R_input script
+with open(os.environ['output_path'],"w") as outfile:
+            
+    #write headers to file
+    headers = ['correct'] + features
+    outfile.write(",".join(headers)+"\n")
+    
+    #loop
+    for instance_identifier,info in matrix.iteritems():
+        
+        output = []
+        #add features
+        for feature in features:
+            if feature in info:
+                value = info[feature]
+                
+                #in the case of rel_freq, unknown is set to -1, here I change the default to 0
+                if value == -1:
+                    value = 0
+                output.append(value)
+            else:
+                lemma = info['lemma']
+                output.append(data[lemma][feature])
+        
+        #mfs
+        explanatory_variable = 0
+        if info['MFS'] == "Yes_MFS":
+            explanatory_variable = 1
+        output.insert(0,explanatory_variable)
+        
+        #write to file
+        output = [str(item) for item in output]
+        outfile.write(",".join(output)+"\n")

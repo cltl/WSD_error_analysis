@@ -19,7 +19,9 @@ num_tokens = len(d)
 output.append(("num_tokens",num_tokens))
 
 #pos
-pos = set(value['pos'] for value in d.itervalues())
+pos = set( value['pos'] 
+           for value in d.itervalues()
+           if value['pos']  != 'u')
 pos = " ".join(pos)
 output.append(("pos",pos))
 
@@ -28,8 +30,9 @@ num_types = len(set( value['lemma'] for value in d.itervalues() ))
 output.append(("num_types",num_types))
 
 #type token ratio
-type_token_ratio = float(num_tokens)/float(num_types)
-output.append(("avg_num_token_per_type",type_token_ratio))
+type_token_ratio = float(num_types)/float(num_tokens)
+type_token_ratio = round(type_token_ratio,2)
+output.append(("type_token_ratio",type_token_ratio))
 
 #document
 num_docs = len( set( key.split(".")[0] for key in d.iterkeys() ))

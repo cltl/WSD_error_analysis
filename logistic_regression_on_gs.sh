@@ -45,11 +45,16 @@ Rscript lib/logistic_regression.R > $output_stat
 #echo output information for user
 
 #distribution senses per document
-echo 'distribution of senses per document can be found at:'
-echo $distribution_senses_csv
-echo
+#echo 'distribution of senses per document can be found at:'
+#echo $distribution_senses_csv
+#echo
 #logistic regression output
-echo 'output logistic regression can be found at:'
-echo $output_stat
+#echo 'output logistic regression can be found at:'
+#echo $output_stat
+#echo 
+#cat $output_stat
+
+#to latex table
+python lib/latex_tables.py -i $output_stat -t logistic_regression_on_gs
 echo 
-cat $output_stat
+echo $output_stat.tex

@@ -70,16 +70,18 @@ class MFS_or_not_MFS():
                     
                     #check if answer was correct
                     answer = 0
-                    if any([system_key in gold 
-                           for system_key in system_keys]):
-                        answer = 1
                     
+                    if any([system_key in gold 
+                            for system_key in system_keys]):
+                        answer = 1
+
                     if mfs:
                         acc_mfs.append(answer)
                         
                     else:
                         acc_notmfs.append(answer)
-            
+                
+
             if competition != "sval2010":
                 self.mfs[competition]    = 100 * sum(acc_mfs)/float(len(acc_mfs))
                 self.notmfs[competition] = 100 * sum(acc_notmfs)/float(len(acc_notmfs))

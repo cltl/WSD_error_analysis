@@ -1,4 +1,4 @@
 
-mydata <- read.csv("/Users/marten/Downloads/wsd_logistic_regression/output/logistic_regression/sval2_sval3+++n_v_a+++num_senses---pos.csv")
-mylogit <- glm(correct ~ num_senses + pos, data = mydata, family =  binomial("logit"))
+mydata <- read.csv("/Users/marten/git/WSD_error_analysis/output/logistic_regression/gs_sval2013+++n_v_r_a+++len_sentence---avg_num_senses_in_sentence---num_senses---pos---rel_freq---total_occurences---occurs_in_x_num_docs.csv")
+mylogit <- glm(correct ~ len_sentence + avg_num_senses_in_sentence + num_senses + pos + rel_freq + total_occurences + occurs_in_x_num_docs, data = mydata, family =  binomial("logit"))
 summary(mylogit)

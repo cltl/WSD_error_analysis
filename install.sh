@@ -47,3 +47,4 @@ mkdir -p output/logistic_regression
 mkdir -p output/plots
 mkdir -p output/mfs_vs_notmfs
 mkdir -p output/distribution_senses_over_documents
+mkdir -p output/monosemous_errors

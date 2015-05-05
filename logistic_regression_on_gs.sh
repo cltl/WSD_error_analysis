@@ -55,6 +55,6 @@ Rscript lib/logistic_regression.R > $output_stat
 #cat $output_stat
 
 #to latex table
-python lib/latex_tables.py -i $output_stat -t logistic_regression_on_gs
+python lib/latex_tables.py -i $output_stat -t logistic_regression
 echo 
 echo $output_stat.tex

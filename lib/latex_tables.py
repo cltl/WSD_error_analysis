@@ -53,7 +53,7 @@ if args.type_of_analysis == "gs_stats":
     
 
 
-if args.type_of_analysis == "logistic_regression_on_gs":
+if args.type_of_analysis == "logistic_regression":
     
     output_path = args.input_folder + ".tex"
     features    = ['Coefficients', 'Estimate', 'Std. Error','z value','Pr(>|z|)']
@@ -61,7 +61,7 @@ if args.type_of_analysis == "logistic_regression_on_gs":
     with open(output_path,'w') as outfile:
         
         string = "created with function %s in clin.2015.sh\n\n" % args.type_of_analysis
-        string += '''\\begin{table}\n\\label{tab:gs_stats}\n\\begin{tabular}{ c || c c c c}\n'''
+        string += '''\\begin{table}\n\\label{tab:TODO}\n\\begin{tabular}{ c || c c c c}\n'''
         string += "&".join(["\\textbf{%s} " % header.replace("_","\\_") for header in features]) + "\\\\ \n"
         string += '\\hline \\hline\n'
         

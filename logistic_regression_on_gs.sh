@@ -52,7 +52,7 @@ Rscript lib/logistic_regression.R > $output_stat
 #echo 'output logistic regression can be found at:'
 #echo $output_stat
 #echo 
-#cat $output_stat
+cat $output_stat
 
 #to latex table
 python lib/latex_tables.py -i $output_stat -t logistic_regression

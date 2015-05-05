@@ -41,7 +41,7 @@ python lib/semeval_to_R_input.py
 Rscript lib/logistic_regression.R > $output_stat
 
 #echo output information for user
-echo $output_stat
+cat $output_stat
 
 #echo convert output to latex tables
 python lib/latex_tables.py -i $output_stat -t logistic_regression

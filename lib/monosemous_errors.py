@@ -28,51 +28,14 @@ class MonosemousErrors():
         self.loop()
         
         #plot
-        data = []
         outfile = open(os.environ['output_path_txt'],"w") 
-
-        for counter,competition in enumerate(['sval2','sval3','sval2007','sval2010','sval2013']):
-            
+        for counter,competition in enumerate(self.competitions):
             if competition in self.results:
-                mistakes   = float(self.results[competition].count(1))
-                error_rate = 100* (  mistakes/len(self.results[competition])  )
-                
-                data.append((counter,competition, error_rate))
-                
+                mistakes   = float(self.results[competition].count(0))
+                error_rate = 100 * (  mistakes/len(self.results[competition])  )
                 outfile.write("%s\t%s\n" % (competition,error_rate))
-        
         outfile.close()  
-        self.plot_it(data,os.environ['output_path_pdf'])
         
-            
-    def plot_it(self,data,output_path):
-        '''
-        @type  data: list
-        @param data: list of tuples (number, competition (str), error_rate (float))
-        
-        @type  output_path: str
-        @param  output_path: output_path (.pdf)
-        '''
-        x_values = [item[1] for item in data]
-        
-        y_values = [(100-item[2]) for item in data]
-        
-        fig    = plt.figure()
-        ax     = fig.add_subplot(111)
-        x_axis = range(len(x_values))
-        
-        plt.plot(x_axis,y_values,label="average monosemous error rate per competition")
-                
-        plt.title("average error rate monosemous lemmas per competition")
-        plt.xlabel("semeval competition")
-        plt.ylabel("average monosemous error rate")
-        plt.xticks(range(len(x_values)), x_values, size='small')
-        plt.xticks(rotation=45)
-        #ax.legend(loc='center left', bbox_to_anchor=(0, 0.25))
-        
-        plt.savefig(output_path,dpi=100)
-        plt.close()
-    
     def settings_to_class_attributes(self):
         '''
         this method set experiment settings to class attributes

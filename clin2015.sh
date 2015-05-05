@@ -7,11 +7,12 @@ function gs_stats () {
 #do analysis
 for com in sval2 sval3 sval2007 sval2010 sval2013; 
 do 
-	bash provide_stats_gs.sh $com
+	result=$(bash provide_stats_gs.sh $com)
 done
 
 #convert to latex table
 python lib/latex_tables.py -i $cwd/output/gs_stats -t 'gs_stats'
+echo
 cat $cwd/output/gs_stats/gs_stats_table.tex
 
 }
@@ -19,6 +20,7 @@ cat $cwd/output/gs_stats/gs_stats_table.tex
 function mfs_plot () { 
 
 #TODO: fix mfs sval2010 (ask ruben how he determined mfs)
+echo '% created with function mfs_plot in clin2015.sh'
 bash plots_mfs_vs_notmfs.sh
 
 }
@@ -26,6 +28,9 @@ bash plots_mfs_vs_notmfs.sh
 
 function plots_gold_standards () {
 
+echo
+echo '% created with function plots_gold_standards in clin2015.sh'
+echo
 #plot graph
 bash plots_gold_standards.sh sval2_sval3_sval2007_sval2010_sval2013 n_v_a_r
 
@@ -61,9 +66,14 @@ bash logistic_regression.sh sval2_sval3_sval2007_sval2010_sval2013 n_v_r_a num_s
 
 function monosemous_errors () {
 
-bash monosemous_errors.sh sval2_sval3_sval2007_sval2010_sval2013 1000 yes
-bash monosemous_errors.sh sval2_sval3_sval2007_sval2010_sval2013 1 no
+export average=$(bash monosemous_errors.sh sval2_sval3_sval2007_sval2010_sval2013 1000 yes)
+export top=$(bash monosemous_errors.sh sval2_sval3_sval2007_sval2010_sval2013 1 no)
+python lib/monosemous_errors_plotting.py
 
+echo 
+echo '% created with function monosemous_errors in clin2015.sh'
+echo 'monosemous errors plot can be found here:'
+echo $cwd/output/monosemous_errors/monosemous_errors.pdf
 #best systems tend to use better pos systems
 
 }
@@ -71,21 +81,31 @@ bash monosemous_errors.sh sval2_sval3_sval2007_sval2010_sval2013 1 no
 #####################################################
 #run all functions and send output or path to stdout
 
+#Section 4.1.1
+#TODO: sval2010 error rate is strangely high
+#echo
+#echo 'Section 4.1.1'
+#monosemous_errors
 
-#Section X 
-#gs_stats
-
-#Section X
+#Section 4.1.3
+#TODO: sval2010 never has a mfs_yes
+#echo
+#echo 'Section 4.1.3'
 #mfs_plot
 
-#Section X
+#Section 4.2.1
+#echo
+#echo 'Section 4.2.1'
+#gs_stats
+
+
+#Section 4.2.2
+#echo
+#echo 'Section 4.2.2'
 #plots_gold_standards
 
 #Section X
-#logistic_regression_on_gs
-
-#Section X
-#monosemous_errors
+logistic_regression_on_gs
 
 #Section X
 #logistic_regression

@@ -34,8 +34,8 @@ if args.type_of_analysis == "gs_stats":
                 
     with open(output_path,'w') as outfile:
         
-        string = "created with function %s in clin.2015.sh\n\n" % args.type_of_analysis
-        string += '''\\begin{table}\n\\label{tab:gs_stats}\n\\begin{tabular}{ c || c c c c c}\n'''
+        string = "%% created with function %s in clin.2015.sh\n\n" % args.type_of_analysis
+        string += '''\\begin{table}[!h]\n\\label{tab:gs_stats}\n\\begin{tabular}{ c || c c c c c}\n'''
         string += "&".join(["\\textbf{%s} " % header.replace("_","\\_") for header in ['task']+features]) + "\\\\ \n"
         string += '\\hline \\hline\n'
         
@@ -47,7 +47,7 @@ if args.type_of_analysis == "gs_stats":
             string += " & ".join(values) + " \\\\ \n"
             
         #write end
-        string += "\\end{tabular}\n\\caption{TODO}\n\\end{table}"
+        string += "\\end{tabular}\n\\caption{TODO}\n\\end{table}\n"
 
         outfile.write(string)
     
@@ -60,7 +60,7 @@ if args.type_of_analysis == "logistic_regression":
     
     with open(output_path,'w') as outfile:
         
-        string = "created with function %s in clin.2015.sh\n\n" % args.type_of_analysis
+        string = "%% created with function %s in clin.2015.sh\n\n" % args.type_of_analysis
         string += '''\\begin{table}\n\\label{tab:TODO}\n\\begin{tabular}{ c || c c c c}\n'''
         string += "&".join(["\\textbf{%s} " % header.replace("_","\\_") for header in features]) + "\\\\ \n"
         string += '\\hline \\hline\n'

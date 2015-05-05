@@ -26,6 +26,7 @@ competition=os.environ['competition']
 
 #create input_path of matrix
 main_dir        = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..'))
+
 input_path      = os.path.join(main_dir,
                                "data",
                                "matrices",

@@ -41,16 +41,22 @@ head output/gs_analysis/sval2_sval3_sval2007_sval2010_sval2013+++n_v_a_r_u/docum
 
 function logistic_regression_on_gs () {
 
+echo '% created with function logistic_regression_on_gs in clin2015.sh'
 #do analysis
-for com in sval2 sval3 sval2007 sval2010 sval2013; 
-do 
-	bash logistic_regression_on_gs.sh $com n_v_r_a num_senses---occurs_in_x_num_docs
-	bash logistic_regression_on_gs.sh $com n_v_r_a len_sentence---avg_num_senses_in_sentence---num_senses---pos---rel_freq---total_occurences---occurs_in_x_num_docs
-done
+#for com in sval2 sval3 sval2007 sval2010 sval2013; 
+#do
+#	bash logistic_regression_on_gs.sh $com n_v_r_a num_senses---occurs_in_x_num_docs
+#	bash logistic_regression_on_gs.sh $com n_v_r_a len_sentence---avg_num_senses_in_sentence---num_senses---pos---rel_freq---total_occurences---occurs_in_x_num_docs
+#done
+
+bash logistic_regression_on_gs.sh sval2013 n_v_r_a num_senses---occurs_in_x_num_docs---rel_freq---total_occurences
+
 }
 
 function logistic_regression () {
 
+echo '% created with function logistic_regression on clin2015.sh'
+echo
 #do analysis
 bash logistic_regression.sh sval2_sval3_sval2007_sval2010_sval2013 n_v_r_a num_senses---len_sentence---pos---copula---rel_freq---avg_num_senses_in_sentence---MFS 1 no 
 bash logistic_regression.sh sval2_sval3_sval2007_sval2010_sval2013 n_v_r_a num_senses---len_sentence---pos---copula---rel_freq---avg_num_senses_in_sentence---MFS 50 yes 
@@ -87,6 +93,12 @@ echo $cwd/output/monosemous_errors/monosemous_errors.pdf
 #echo 'Section 4.1.1'
 #monosemous_errors
 
+#Section 4.1.2
+#echo
+#echo 'Section 4.1.2'
+#logistic_regression
+#echo
+
 #Section 4.1.3
 #TODO: sval2010 never has a mfs_yes
 #echo
@@ -104,9 +116,10 @@ echo $cwd/output/monosemous_errors/monosemous_errors.pdf
 #echo 'Section 4.2.2'
 #plots_gold_standards
 
-#Section X
+#Section 4.2.3
+echo
+echo 'Section 4.2.3'
 logistic_regression_on_gs
 
-#Section X
-#logistic_regression
+
 

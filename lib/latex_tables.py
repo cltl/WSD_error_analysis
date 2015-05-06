@@ -61,7 +61,7 @@ if args.type_of_analysis == "logistic_regression":
     with open(output_path,'w') as outfile:
         
         string = "%% created with function %s in clin.2015.sh\n\n" % args.type_of_analysis
-        string += '''\\begin{table}\n\\label{tab:TODO}\n\\begin{tabular}{ c || c c c c}\n'''
+        string += '''\\begin{table}\n\\label{tab:TODO}\n\\begin{tabular}{ r || c c c c}\n'''
         string += "&".join(["\\textbf{%s} " % header.replace("_","\\_") for header in features]) + "\\\\ \n"
         string += '\\hline \\hline\n'
         
@@ -89,6 +89,7 @@ if args.type_of_analysis == "logistic_regression":
                             values.pop(-2)
                             values[-1] = '< '+values[-1]
                     
+                    values = [value.replace("_","\\_") for value in values]
                     string += " & ".join(values) + " \\\\ \n"
             
         #write end

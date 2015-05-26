@@ -48,3 +48,4 @@ mkdir -p output/plots
 mkdir -p output/mfs_vs_notmfs
 mkdir -p output/distribution_senses_over_documents
 mkdir -p output/monosemous_errors
+mkdir -p output/pos_errorsh

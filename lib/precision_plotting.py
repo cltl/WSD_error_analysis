@@ -7,17 +7,17 @@ from collections import defaultdict
 from lxml import etree
 import utils
 import matplotlib.pyplot as plt
-from pos_errors_plotting import plot
+from precision_plotting_utils import plot
 
-class PosErrors():
+class PrecisionPlotting():
     '''
     
     @type  data: dict
     @ivar  data:
-        pos ->
+        feature_value ->
             'system' -> list of 0 and 1
-    
-    using the global variables defined in ../pos_errors.sh
+                
+    using the global variables defined in ../precision_errors.sh or .../
     (1) a graph (pdf file) is created with the average monosemous errors per competition
     '''
     def __init__(self):
@@ -40,8 +40,8 @@ class PosErrors():
         #plot
         plot(self.data,
              self.data.keys(),
-             'Precision Per Pos',
-             'part of speech',
+             'Precision Per %s' % self.feature,
+             '%s' % self.feature,
              'precision',
              os.environ['output_path_pdf'],
              12)
@@ -55,6 +55,7 @@ class PosErrors():
         if self.rankings != "u":
             self.rankings = int(self.rankings)
         self.unranked     = os.environ['unranked']
+        self.feature      = os.environ['feature']
         
     def loop(self):
         '''
@@ -79,11 +80,11 @@ class PosErrors():
             for token_el in doc.iterfind("token"):
                 
                 #obtain gold keys
-                identifier = token_el.get("token_id")
-                pos        = info[identifier]['pos']
+                identifier    = token_el.get("token_id")
+                feature_value = info[identifier][self.feature]
                 
                 #continue if pos == 'u'
-                if pos == "u":
+                if feature_value == "u":
                     continue
                 
                 gold = [key.get("value")
@@ -121,8 +122,8 @@ class PosErrors():
                     
                     #write to file
                     if allowed:
-                        self.data[pos][system_name].append(answer)
+                        self.data[feature_value][system_name].append(answer)
                         
                         
 if __name__ == "__main__":
-    PosErrors()
+    PrecisionPlotting()

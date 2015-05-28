@@ -88,7 +88,14 @@ function pos_errors () {
 
 echo
 echo '% created with function pos_errors in clin2015.sh'
-bash pos_errors.sh sval2_sval3_sval2007_sval2010_sval2013 100 no
+bash precision_plotting.sh sval2_sval3_sval2007_sval2010_sval2013 pos 1 no
+}
+
+function polysemy_errors () {
+
+echo
+echo '% created with function polysemy_errors in clin2015.sh'
+bash precision_plotting.sh sval2_sval3_sval2007_sval2010_sval2013 freq_class 1 no
 }
 
 #####################################################
@@ -96,40 +103,41 @@ bash pos_errors.sh sval2_sval3_sval2007_sval2010_sval2013 100 no
 
 #Section 4.1.1
 #TODO: sval2010 error rate is strangely high
-echo
-echo 'Section 4.1.1'
-monosemous_errors
+#echo
+#echo 'Section 4.1.1'
+#monosemous_errors
 
 #Section 4.1.2
-echo
-echo 'Section 4.1.2'
-logistic_regression
-echo
+#echo
+#echo 'Section 4.1.2'
+#logistic_regression
+#echo
 
 #Section 4.1.3
 #TODO: sval2010 never has a mfs_yes
-echo
-echo 'Section 4.1.3'
-mfs_plot
+#echo
+#echo 'Section 4.1.3'
+#mfs_plot
 
 #Section 4.2.1
-echo
-echo 'Section 4.2.1'
-gs_stats
+#echo
+#echo 'Section 4.2.1'
+#gs_stats
 
 
 #Section 4.2.2
-echo
-echo 'Section 4.2.2'
-plots_gold_standards
+#echo
+#echo 'Section 4.2.2'
+#plots_gold_standards
 
 #Section 4.2.3
-echo
-echo 'Section 4.2.3'
-logistic_regression_on_gs
+#echo
+#echo 'Section 4.2.3'
+#logistic_regression_on_gs
 
 
 #To be decided
 echo
 echo
 pos_errors
+polysemy_errors

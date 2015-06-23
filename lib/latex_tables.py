@@ -89,6 +89,14 @@ if args.type_of_analysis == "logistic_regression":
                             values.pop(-2)
                             values[-1] = '< '+values[-1]
                     
+                    for counter,value in enumerate(values):
+                        if counter in [1,2,3]:
+                            try:
+                                value = str( round( float(value) ,3) )
+                                values[counter] = value
+                            except:
+                                continue
+                        
                     values = [value.replace("_","\\_") for value in values]
                     string += " & ".join(values) + " \\\\ \n"
             

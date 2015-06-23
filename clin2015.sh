@@ -91,7 +91,7 @@ echo '% created with function pos_errors in clin2015.sh'
 bash precision_plotting.sh sval2_sval3_sval2007_sval2010_sval2013 pos 1 no
 }
 
-function polysemy_errors () {
+function freq_class () {
 
 echo
 echo '% created with function polysemy_errors in clin2015.sh'
@@ -109,10 +109,10 @@ bash precision_plotting.sh sval2_sval3_sval2007_sval2010_sval2013 freq_class 1 n
 #monosemous_errors
 
 #Section 4.1.2
-#echo
-#echo 'Section 4.1.2'
-#logistic_regression
-#echo
+echo
+echo 'Section 4.1.2'
+logistic_regression
+echo
 
 #Section 4.1.3
 #TODO: sval2010 never has a mfs_yes
@@ -130,7 +130,7 @@ bash precision_plotting.sh sval2_sval3_sval2007_sval2010_sval2013 freq_class 1 n
 #echo
 #echo 'Section 4.1.5
 #echo
-#polysemy_errors
+#freq_class
 
 #Section 4.2.1
 #echo

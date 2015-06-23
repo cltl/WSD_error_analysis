@@ -163,7 +163,7 @@ def create_data_matrix(corpus,output_file):
         data_for_token['list_senses'] = list_skey_syn_sense
         # We check also if any of the valid skeys corresponds to the sense 1
         is_most_frequent_sense = 'No_MFS'
-        if corpus == 'sval2010':
+        if corpus == 'semeval2010':
             if guessed_sense == '1':
                 is_most_frequent_sense = 'Yes_MFS'
         else:

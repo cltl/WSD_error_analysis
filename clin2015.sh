@@ -103,47 +103,51 @@ bash precision_plotting.sh sval2_sval3_sval2007_sval2010_sval2013 freq_class 1 n
 
 #Section 4.1.1
 #STATUS: DONE
-#sval2010 removed from graph because error rate is strangely high due to mw errors
 #echo
 #echo 'Section 4.1.1'
-#monosemous_errors
-
-#Section 4.1.2
-echo
-echo 'Section 4.1.2'
-logistic_regression
-echo
-
-#Section 4.1.3
-#TODO: sval2010 never has a mfs_yes
-#echo
-#echo 'Section 4.1.3'
-#mfs_plot
-
-#Section 4.1.4
-#echo
-#echo 'Section 4.1.4
-#echo
-#pos_errors
-
-#Section 4.1.5
-#echo
-#echo 'Section 4.1.5
-#echo
-#freq_class
-
-#Section 4.2.1
-#echo
-#echo 'Section 4.2.1'
 #gs_stats
 
 
-#Section 4.2.2
+#Section 4.1.2
 #echo
-#echo 'Section 4.2.2'
+#echo 'Section 4.1.2'
 #plots_gold_standards
 
+#Section 4.1.3
+#echo
+#echo 'Section 4.1.3'
+#logistic_regression_on_gs
+
+#Section 4.2.1
+#STATUS: DONE
+#sval2010 removed from graph because error rate is strangely high due to mw errors
+#echo
+#echo 'Section 4.2.1'
+#monosemous_errors
+
+#Section 4.2.2
+#STATUS: DONE
+#echo
+#echo 'Section 4.2.2'
+#logistic_regression
+#echo
+
 #Section 4.2.3
+#TODO: sval2010 never has a mfs_yes
 #echo
 #echo 'Section 4.2.3'
-#logistic_regression_on_gs
+#mfs_plot
+
+#Section 4.2.4
+#echo
+#echo 'Section 4.2.4
+#echo
+#pos_errors
+
+#Section 4.2.5
+#will probably not be added to paper
+#echo
+#echo 'Section 4.2.5
+#echo
+#freq_class
+

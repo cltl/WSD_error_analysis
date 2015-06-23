@@ -72,8 +72,8 @@ bash logistic_regression.sh sval2_sval3_sval2007_sval2010_sval2013 n_v_r_a num_s
 
 function monosemous_errors () {
 
-export average=$(bash monosemous_errors.sh sval2_sval3_sval2007_sval2010_sval2013 1000 yes)
-export top=$(bash monosemous_errors.sh sval2_sval3_sval2007_sval2010_sval2013 1 no)
+export average=$(bash monosemous_errors.sh sval2_sval3_sval2007_sval2013 1000 yes)
+export top=$(bash monosemous_errors.sh sval2_sval3_sval2007_sval2013 1 no)
 python lib/monosemous_errors_plotting.py
 
 echo 
@@ -102,7 +102,8 @@ bash precision_plotting.sh sval2_sval3_sval2007_sval2010_sval2013 freq_class 1 n
 #run all functions and send output or path to stdout
 
 #Section 4.1.1
-#TODO: sval2010 error rate is strangely high
+#STATUS: DONE
+#sval2010 removed from graph because error rate is strangely high due to mw errors
 #echo
 #echo 'Section 4.1.1'
 #monosemous_errors
@@ -119,6 +120,18 @@ bash precision_plotting.sh sval2_sval3_sval2007_sval2010_sval2013 freq_class 1 n
 #echo 'Section 4.1.3'
 #mfs_plot
 
+#Section 4.1.4
+#echo
+#echo 'Section 4.1.4
+#echo
+#pos_errors
+
+#Section 4.1.5
+#echo
+#echo 'Section 4.1.5
+#echo
+#polysemy_errors
+
 #Section 4.2.1
 #echo
 #echo 'Section 4.2.1'
@@ -134,10 +147,3 @@ bash precision_plotting.sh sval2_sval3_sval2007_sval2010_sval2013 freq_class 1 n
 #echo
 #echo 'Section 4.2.3'
 #logistic_regression_on_gs
-
-
-#To be decided
-echo
-echo
-pos_errors
-polysemy_errors

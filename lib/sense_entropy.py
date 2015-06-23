@@ -12,7 +12,7 @@ from lxml import etree
 from nltk.corpus import wordnet as wn
 '''
 goal of this module is to
-(1) loop through semcor
+(1) loop through a semantic corpus
 (2) count for every (lemma,pos) the sense distribution
 (3) calculate normalised sense entropy for each (lemma,pos)
 '''
@@ -28,8 +28,8 @@ __status__     = "production"
 parser = argparse.ArgumentParser(description='Load sense entropy from SemCor')
 
 parser.add_argument('-i',   dest='input_folder',   help='folder with naf files (to semcor 1.6 or semcor 3.0)',  required=True)
-parser.add_argument('-w',   dest='resource',       help='WordNet-eng16 | WordNet-eng30',                        required=True)
-parser.add_argument('-r',   dest='reftype',        help="lexical_key | synset",                                 required=True)
+parser.add_argument('-w',   dest='resource',       help='WordNet-eng16 | WordNet-eng30 | WordNet-30',                        required=True)
+parser.add_argument('-r',   dest='reftype',        help="lexical_key | synset | sense",                                 required=True)
 parser.add_argument('-o',   dest="output_folder",  help="basename will be resource_reftype",                    required=True)
 parser.add_argument('--ili',  dest="ili", type=bool, help="if 'ili' is added at the end of the call, the synset references will be converted to ili definitions")
 
@@ -116,7 +116,9 @@ for naf_file in utils.path_generator(args.input_folder,".naf"):
                 reference = reference.replace("eng","ili-")
 
             #obtain pos,lemma
-            pos       = reference[-1]
+            pos       = ext_ref_el.getparent().getparent().get("pos")[0].lower()
+            if pos == "j":
+                pos = "a"
             lemma     = ext_ref_el.getparent().getparent().get("lemma")
             lemma_pos = (lemma,pos)
             

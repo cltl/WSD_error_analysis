@@ -25,7 +25,7 @@ class MFS_or_not_MFS():
         #class attributes
         self.mfs    = {}
         self.notmfs = {}
-        self.labels = ['sval2','sval3','sval2007','sval2013']
+        self.labels = ['sval2','sval3','sval2007','sval2010','sval2013']
         
         #loop and write
         self.loop()
@@ -82,9 +82,9 @@ class MFS_or_not_MFS():
                         acc_notmfs.append(answer)
                 
 
-            if competition != "sval2010":
-                self.mfs[competition]    = 100 * sum(acc_mfs)/float(len(acc_mfs))
-                self.notmfs[competition] = 100 * sum(acc_notmfs)/float(len(acc_notmfs))
+            #if competition != "sval2010":
+            self.mfs[competition]    = 100 * sum(acc_mfs)/float(len(acc_mfs))
+            self.notmfs[competition] = 100 * sum(acc_notmfs)/float(len(acc_notmfs))
             
     def plot_it(self):
         '''
@@ -99,11 +99,11 @@ class MFS_or_not_MFS():
         ax = fig.add_subplot(111)
         
         ## the data
-        N = 4
+        N = 5
         menMeans   = [self.mfs[comp]    for comp in self.labels]
-        menStd     = [0, 0, 0, 0]
+        menStd     = [0, 0, 0, 0, 0]
         womenMeans = [self.notmfs[comp] for comp in self.labels]
-        womenStd   = [0, 0, 0, 0]
+        womenStd   = [0, 0, 0, 0, 0]
         
         ## necessary variables
         ind = np.arange(N)                # the x locations for the groups
@@ -121,7 +121,7 @@ class MFS_or_not_MFS():
         ax.set_ylim(0,100)
         ax.set_ylabel('Accuracy')
         ax.set_title('Accuracy when sense is MFS versus when it is not')
-        xTickMarks = ['sval2','sval3','sval2007','sval2013']
+        xTickMarks = self.labels
         ax.set_xticks(ind+width)
         xtickNames = ax.set_xticklabels(xTickMarks)
         plt.setp(xtickNames, rotation=45, fontsize=10)

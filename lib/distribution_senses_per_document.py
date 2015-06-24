@@ -104,12 +104,12 @@ with open(os.environ['distribution_senses_csv'],"w") as outfile:
     for lemma,info in data.iteritems():
         
         #obtain pos and num_senses
-        pos              = info['pos']
-        num_senses       = info['num_senses']
-        senses           = info['senses']
-        total_occurences = info['total_occurences']
-        mfs_count        = info['mfs']
-        occurs_in_x_num_docs = len(senses)
+        pos                          = info['pos']
+        num_senses                   = info['num_senses']
+        senses                       = info['senses']
+        total_occurences             = info['total_occurences']
+        mfs_count                    = info['mfs']
+        occurs_in_x_num_docs         = len(senses)
         info['occurs_in_x_num_docs'] = occurs_in_x_num_docs
         
         #only write to file is freq is two or more

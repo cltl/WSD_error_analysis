@@ -173,9 +173,9 @@ def plot_it(data, context_levels,competitions, allowed_pos):
     #try to fit xlabel in plot
     plt.gcf().subplots_adjust(bottom=0.20)
     
-    plt.title("Maximal performance predominant sense approach per context level")
+    plt.title("Upper bound predominant sense approach per context level")
     plt.xlabel("context level")
-    plt.ylabel("Performance per context level (if pos is known)")
+    plt.ylabel("Upper bound accuracy (if pos is known)")
     plt.xticks(range(len(x_values)), x_values, size='small')
     plt.xticks(rotation=90)
     ax.legend(loc='center right')

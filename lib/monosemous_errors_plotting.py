@@ -33,12 +33,12 @@ ax     = fig.add_subplot(111)
 x_axis = range(len(x_average))
 
 
-plt.plot(x_axis, y_average, label="average all systems")
+plt.plot(x_axis, y_average,     label="average all systems")
 plt.plot(x_axis,     y_top,     label="top system")
         
-plt.title("average error rate monosemous instances per competition")
+plt.title("error rate monosemous instances per competition")
 plt.xlabel("semeval competition")
-plt.ylabel("average monosemous error rate (%)")
+plt.ylabel("monosemous error rate (%)")
 plt.xticks(range(len(x_average)), x_average, size='small')
 plt.xticks(rotation=45)
 #plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)

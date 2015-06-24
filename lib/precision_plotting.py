@@ -40,7 +40,7 @@ class PrecisionPlotting():
         #plot
         plot(self.data,
              self.data.keys(),
-             'Precision Per %s' % self.feature,
+             'Average precision per %s' % self.feature,
              '%s' % self.feature,
              'precision',
              os.environ['output_path_pdf'],

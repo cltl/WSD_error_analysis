@@ -9,16 +9,10 @@ This repo provides various ways to analyse system submissions to wsd competition
     * bash install.sh (takes about 5 minutes)
 
 ##USAGE##
-* logistic regression:
-    * run bash logistic_regression.sh for more information about how to use the script
-* plots gold standards:
-    * run plots_gold_standards.sh for more information about how to use the script
-* basic stats gold standards:
-    * run provide_stats_gs.sh for more information about how to use the script
-* plots_mfs_vs_notmfs
-    * run plots_mfs_vs_notmfs.sh for more information
-* lib/distribution_senses_per_document.py
-    * run python lib/distribution_senses_per_document.py for more information
+* CLIN journal paper:
+    * run bash clin2015.sh to create the graphs and tables used for our submission to the CLIN journal (http://www.clinjournal.org/)
+* other .sh files: 
+    * call each file and the information about how to use it will be send to stdout
 
 ##In order to recreate data matrices (this is already done in install.sh)##
 run: python create_data_matrix.py sval2|sval3|semeval2007|semeval2010|semeval2013 matrix_filename

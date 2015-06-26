@@ -61,17 +61,27 @@ if args.type_of_analysis == "logistic_regression":
     with open(output_path,'w') as outfile:
         
         string = "%% created with function %s in clin.2015.sh\n\n" % args.type_of_analysis
-        string += '''\\begin{table}\n\\label{tab:TODO}\n\\begin{tabular}{ r || c c c c}\n'''
+        string += '''\\begin{table}\n\\begin{tabular}{ r || c c c c}\n'''
         string += "&".join(["\\textbf{%s} " % header.replace("_","\\_") for header in features]) + "\\\\ \n"
         string += '\\hline \\hline\n'
         
         coefficient_line = 0
         with open(args.input_folder) as infile:
             for counter, line in enumerate(infile):
-
-                if line.startswith("---"):
+                
+                if line.startswith("(Dis"):
                     break
                 
+                elif line == "\n":
+                    continue
+                
+                elif line.startswith("---"):
+                    continue
+                    
+                elif line.startswith("Sign"):
+                    line = '''\\multicolumn{5}{l}{Signif. codes:  0 ``$\\ast$$\\ast$$\\ast$'' 0.001 ``$\\ast$$\\ast$'' 0.01 ``$\\ast$'' 0.05 ``.'' 0.1 `` '' 1}\\\\\n'''
+                    string += line
+                    
                 elif line.startswith("Coefficients"):
                     coefficient_line = counter
                 

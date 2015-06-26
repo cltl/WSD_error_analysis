@@ -101,53 +101,43 @@ bash precision_plotting.sh sval2_sval3_sval2007_sval2010_sval2013 freq_class 1 n
 #run all functions and send output or path to stdout
 
 #Section 2
-#STATUS: DONE + CHECKED
-#echo
-#echo 'Section 2'
-#gs_stats
-
-
-#Section 4.2.1
-#STATUS: DONE + CHECKED
-#echo
-#echo 'Section 4.2.1'
-#plots_gold_standards
-
-#Section 4.2.2
-#phrase this as exceptional that occurs_in_x_num_docs was only significant for 2013 13 documents
-#STATUS: DONE + CHECKED
-#echo
-#echo 'Section 4.2.2'
-#logistic_regression_on_gs
-
-#Section 4.1.1
-#STATUS: DONE + CHECKED
-#sval2010 removed from graph because error rate is strangely high due to mw errors
 echo
-echo 'Section 4.1.1'
+echo 'Section 2'
+gs_stats
+
+#Section 4.1
+echo
+echo 'Section 4.1'
 monosemous_errors
 
-#Section 4.1.2
-#STATUS: DONE + CHECKED
-#TODO: remove features that were not significant and name them in description:
+#Section 4.2
+#features that were not significant:
 	#pos
 	#len\_sentence
-#echo
-#echo 'Section 4.1.2'
-#logistic_regression
-#echo
+echo
+echo 'Section 4.2'
+logistic_regression
+echo
 
-#Section 4.1.3
-#STATUS:DONE + CHECKED
-#echo
-#echo 'Section 4.1.3'
-#mfs_plot
+#Section 4.3
+echo
+echo 'Section 4.3'
+mfs_plot
 
-#Section 4.1.4
-#STATUS: DONE + CHECKED
+#Section 4.4
+echo
+echo 'Section 4.4'
+echo
+pos_errors
+
 #echo
-#echo 'Section 4.1.4'
-#echo
-#pos_errors
+#plots_gold_standards
+
+#Section 4.5
+echo
+echo 'Section 4.2.2'
+logistic_regression_on_gs
+
+
 
 

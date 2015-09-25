@@ -9,6 +9,15 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 
+'''
+
+IAA
+(1) sval2 http://www.aclweb.org/anthology/S01-1005: NA
+(2) sval3 http://www.aclweb.org/anthology/W/W04/W04-0811.pdf 72.5
+(3) sval2007 http://www.aclweb.org/anthology/S/S07/S07-1016.pdf verbs 72 nouns 86
+(4) sval2010 http://www.aclweb.org/anthology/S10-1013: one annotator: not available
+(5) sval2013 not available
+'''
 class MFS_or_not_MFS():
     '''
     using the global variables defined in ../plots_mfs_vs_not_mfs.sh
@@ -120,14 +129,14 @@ class MFS_or_not_MFS():
         ax.set_xlim(-width,len(ind)+width)
         ax.set_ylim(0,100)
         ax.set_ylabel('Accuracy')
-        ax.set_title('Accuracy when sense is MFS versus when it is not')
+        ax.set_title('Accuracy on MFS vs LFS')
         xTickMarks = self.labels
         ax.set_xticks(ind+width)
         xtickNames = ax.set_xticklabels(xTickMarks)
         plt.setp(xtickNames, rotation=45, fontsize=10)
         
         ## add a legend
-        ax.legend( (rects1[0], rects2[0]), ('MFS', 'NotMFS') )
+        ax.legend( (rects1[0], rects2[0]), ('MFS', 'LFS') )
         
         #save
         plt.savefig(os.environ['output_pdf'])    

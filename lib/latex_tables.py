@@ -11,6 +11,11 @@ parser.add_argument('-i', dest='input_folder',     help='folder or file with out
 parser.add_argument('-t', dest='type_of_analysis', help='gs_stats |',                             required=True)
 args = parser.parse_args()
 competitions = ['sval2','sval3','sval2007','sval2010','sval2013']
+old2new = {'sval2' : 'se2',
+           'sval3' : 'se3',
+           'sval2007': 'se7',
+           'sval2010': 'se10',
+           'sval2013' : 'se13'}
 
 
 
@@ -18,7 +23,7 @@ if args.type_of_analysis == "gs_stats":
     
     output_path = os.path.join(args.input_folder,
                                'gs_stats_table.tex')
-    features    = ['pos','num_docs','num_tokens','num_types','type_token_ratio']
+    features    = ['POS','# docs','# instances', '| {gold meanings} |']
     data = defaultdict(dict)
     
     for competition_output in glob.glob("{input_folder}/*.txt".format(input_folder=args.input_folder)):
@@ -40,9 +45,11 @@ if args.type_of_analysis == "gs_stats":
         string += '\\hline \\hline\n'
         
         for competition in competitions:
+
+            new_name = old2new[competition]
             
             info = data[competition]
-            values = [competition] + [info[feature] for feature in features]
+            values = [new_name] + [info[feature] for feature in features]
             
             string += " & ".join(values) + " \\\\ \n"
             

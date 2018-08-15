@@ -16,27 +16,52 @@ output      = []
 
 #num instances
 num_tokens = len(d)
-output.append(("num_tokens",num_tokens))
+output.append(("# instances",num_tokens))
 
 #pos
 pos = set( value['pos'] 
            for value in d.itervalues()
            if value['pos']  != 'u')
 pos = " ".join(pos)
-output.append(("pos",pos))
+output.append(("POS",pos))
 
 #types
 num_types = len(set( value['lemma'] for value in d.itervalues() ))
-output.append(("num_types",num_types))
+output.append(("# lemmas",num_types))
 
 #type token ratio
 type_token_ratio = float(num_types)/float(num_tokens)
 type_token_ratio = round(type_token_ratio,2)
-output.append(("type_token_ratio",type_token_ratio))
+output.append(("type token ratio",type_token_ratio))
+
+# meanings
+meanings = set()
+for id_, instance_info in d.iteritems():
+
+    pos = instance_info['pos']
+    gold_keys = instance_info['valid_skeys']
+
+    if competition == 'sval2010':
+        meanings.update(gold_keys)
+    else:
+        for key, offset, senserank in instance_info['list_senses']:
+
+            if key in gold_keys:
+                ili = offset + '-' + pos
+                meanings.add(ili)
+
+output.append(('| {gold meanings} |', len(meanings)))
+
+
+
+
+
+
+
 
 #document
 num_docs = len( set( key.split(".")[0] for key in d.iterkeys() ))
-output.append(("num_docs",num_docs))
+output.append(("# docs",num_docs))
 
 with open(output_path,"w") as outfile:
     for label,value in output:

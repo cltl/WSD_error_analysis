@@ -58,7 +58,7 @@ plot_df = plot_df.sort_values(by=['Year'], ascending=True)
 #plt.ylim(0.5, None)
 #ax = sns.catplot(x='Year', y='F1', data=plot_df, hue='System')
 
-plt.figure(figsize=(16, 8))
+plt.figure(figsize=(20, 10))
 ax = sns.barplot(x='System', y='F1', data=plot_df,
                  color='navy'
                  #hue='Competition'
@@ -68,7 +68,8 @@ ax.set_xlabel('System', fontsize=18)
 ax.set_ylabel('$F_1$', fontsize=18)
 plt.ylim(0.5, None)
 #plt.tight_layout()
-ax.set_xticklabels(plot_df['System'], rotation=20)
+plt.subplots_adjust(bottom=0.25)
+ax.set_xticklabels(plot_df['System'], rotation=90)
 
 plt.xticks(size=14)
 plt.yticks(size=14)

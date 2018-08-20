@@ -64,15 +64,15 @@ ax = sns.barplot(x='System', y='F1', data=plot_df,
                  #hue='Competition'
                  )
 
-ax.set_xlabel('System', fontsize=18)
-ax.set_ylabel('$F_1$', fontsize=18)
+ax.set_xlabel('System', fontsize=22)
+ax.set_ylabel('$F_1$', fontsize=22)
 plt.ylim(0.5, None)
 #plt.tight_layout()
 plt.subplots_adjust(bottom=0.25)
 ax.set_xticklabels(plot_df['System'], rotation=90)
 
-plt.xticks(size=14)
-plt.yticks(size=14)
+plt.xticks(size=16)
+plt.yticks(size=16)
 rects = ax.patches
 
 # Make some labels.

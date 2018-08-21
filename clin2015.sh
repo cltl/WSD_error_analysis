@@ -101,11 +101,11 @@ bash precision_plotting.sh sval2_sval3_sval2007_sval2010_sval2013 freq_class 1 n
 #run all functions and send output or path to stdout
 
 #trends
-echo
-echo 'F1 trends'
-cd trends
-bash all_trend_plots.sh
-cd ..
+#echo
+#echo 'F1 trends'
+#cd trends
+#bash all_trend_plots.sh
+#cd ..
 
 #Section 2
 echo

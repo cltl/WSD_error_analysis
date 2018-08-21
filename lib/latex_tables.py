@@ -11,11 +11,21 @@ parser.add_argument('-i', dest='input_folder',     help='folder or file with out
 parser.add_argument('-t', dest='type_of_analysis', help='gs_stats |',                             required=True)
 args = parser.parse_args()
 competitions = ['sval2','sval3','sval2007','sval2010','sval2013']
-old2new = {'sval2' : 'se2',
-           'sval3' : 'se3',
-           'sval2007': 'se7',
-           'sval2010': 'se10',
-           'sval2013' : 'se13'}
+old2new = {'sval2' : 'se2-aw',
+           'sval3' : 'se3-aw',
+           'sval2007': 'se7-aw',
+           'sval2010': 'se10-aw',
+           'sval2013' : 'se13-aw'}
+
+new2wn_version = {'se2-aw' : '1.7',
+                  'se3-aw' : '1.7.1',
+                  'se7-aw' : '2.1',
+                  'se10-aw' : '3.0',
+                  'se13-aw' : '3.0',
+                  'se15-aw' : '3.0'
+                  }
+
+
 
 
 
@@ -23,7 +33,7 @@ if args.type_of_analysis == "gs_stats":
     
     output_path = os.path.join(args.input_folder,
                                'gs_stats_table.tex')
-    features    = ['POS','# docs','# instances', '| {gold meanings} |']
+    features    = ['POS', '# docs','# instances']
     data = defaultdict(dict)
     
     for competition_output in glob.glob("{input_folder}/*.txt".format(input_folder=args.input_folder)):
@@ -41,19 +51,30 @@ if args.type_of_analysis == "gs_stats":
         
         string = "%% created with function %s in clin.2015.sh\n\n" % args.type_of_analysis
         string += '''\\begin{table}[!h]\n\\label{tab:gs_stats}\n\\begin{tabular}{ c || c c c c c}\n'''
-        string += "&".join(["\\textbf{%s} " % header.replace("_","\\_") for header in ['task']+features]) + "\\\\ \n"
+        string += "&".join(["\\textbf{%s} " % header.replace("_","\\_") for header in ['task']+['WordNet version'] + features]) + "\\\\ \n"
         string += '\\hline \\hline\n'
         
         for competition in competitions:
 
             new_name = old2new[competition]
+            wn_version = new2wn_version[new_name]
+
             
             info = data[competition]
-            values = [new_name] + [info[feature] for feature in features]
-            
+
+
+            values = [new_name] + [wn_version] + [info[feature] for feature in features]
+
+
             string += " & ".join(values) + " \\\\ \n"
-            
+
+            if new_name == 'se2-aw':
+                values = ['se2-aw-v2', '3.0', 'a n nr v', '3', '2282']
+                string += " & ".join(values) + " \\\\ \n"
+
         #write end
+        values = ['se15-aw', '3.0', 'a n r v', '4', '1119']
+        string += " & ".join(values) + " \\\\ \n"
         string += "\\end{tabular}\n\\caption{TODO}\n\\end{table}\n"
 
         outfile.write(string)
@@ -118,6 +139,7 @@ if args.type_of_analysis == "logistic_regression":
                     string += " & ".join(values) + " \\\\ \n"
             
         #write end
+
         string += "\\end{tabular}\n\\caption{TODO}\n\\end{table}"
         
         outfile.write(string)

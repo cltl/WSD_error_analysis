@@ -50,7 +50,7 @@ for id_, instance_info in d.iteritems():
                 ili = offset + '-' + pos
                 meanings.add(ili)
 
-output.append(('| {gold meanings} |', len(meanings)))
+#output.append(('| {gold meanings} |', len(meanings)))
 
 
 

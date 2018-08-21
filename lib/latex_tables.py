@@ -27,8 +27,6 @@ new2wn_version = {'se2-aw' : '1.7',
 
 
 
-
-
 if args.type_of_analysis == "gs_stats":
     
     output_path = os.path.join(args.input_folder,

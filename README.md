@@ -9,8 +9,8 @@ This repo provides various ways to analyse system submissions to wsd competition
     * bash install.sh (takes about 5 minutes)
 
 ##USAGE##
-* CLIN journal paper:
-    * run bash clin2015.sh to create the graphs and tables used for our submission to the CLIN journal (http://www.clinjournal.org/)
+* [Python 2.7] run `bash error_analysis.sh` to create the graphs and tables
+* [Python 3.6] run `bash trends.sh` to create the plots for the F1 trends
 * other .sh files: 
     * call each file and the information about how to use it will be send to stdout
 

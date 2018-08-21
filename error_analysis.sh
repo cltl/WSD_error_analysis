@@ -100,50 +100,37 @@ bash precision_plotting.sh sval2_sval3_sval2007_sval2010_sval2013 freq_class 1 n
 #####################################################
 #run all functions and send output or path to stdout
 
-#trends
 #echo
-#echo 'F1 trends'
-#cd trends
-#bash all_trend_plots.sh
-#cd ..
+#echo 'Gold standard stats'
+#gs_stats
 
-#Section 2
-echo
-echo 'Section 2'
-gs_stats
-
-#Section 4.1
 #echo
-#echo 'Section 4.1'
+#echo 'Monosemous errors'
 #monosemous_errors
 
-#Section 4.2
 #features that were not significant:
 	#pos
 	#len\_sentence
 #echo
-#echo 'Section 4.2'
+#echo 'Logistic regression'
 #logistic_regression
 #echo
 
-#Section 4.3
 #echo
-#echo 'Section 4.3'
+#echo 'mfs plot'
 #mfs_plot
 
-#Section 4.4
 #echo
-#echo 'Section 4.4'
+#echo 'Part of speech errors'
 #echo
 #pos_errors
 
 #echo
 #plots_gold_standards
 
-#Section 4.5
 #echo
-#echo 'Section 4.2.2'
-#logistic_regression_on_gs
+echo 'Logistic regression on gold standards'
+logistic_regression_on_gs
 
 
 

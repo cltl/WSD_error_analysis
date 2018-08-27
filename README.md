@@ -13,6 +13,7 @@ This repo provides various ways to analyse system submissions to wsd competition
 * [Python 3.6] run `bash trends.sh` to create the plots for the F1 trends
 * other .sh files: 
     * call each file and the information about how to use it will be send to stdout
+* [Python 3.6] run `wn_explanation/WordNet_explanation.ipynb` to create the image used to explain the WordNet structure
 
 ##In order to recreate data matrices (this is already done in install.sh)##
 run: python create_data_matrix.py sval2|sval3|semeval2007|semeval2010|semeval2013 matrix_filename

@@ -117,13 +117,13 @@ bash precision_plotting.sh sval2_sval3_sval2007_sval2010_sval2013 freq_class 1 n
 #echo
 
 #echo
-#echo 'mfs plot'
-#mfs_plot
+echo 'mfs plot'
+mfs_plot
 
 #echo
-echo 'Part of speech errors'
-echo
-pos_errors
+#echo 'Part of speech errors'
+#echo
+#pos_errors
 
 #echo
 #echo 'gold standard plots'

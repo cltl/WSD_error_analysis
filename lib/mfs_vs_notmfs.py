@@ -18,6 +18,23 @@ IAA
 (4) sval2010 http://www.aclweb.org/anthology/S10-1013: one annotator: not available
 (5) sval2013 not available
 '''
+
+
+filename2official_name = {
+    '1.GAMBL-AW.all-words-test-predictions' : 'GAMBL',
+    'PNNL.task-17.aw.txt' : 'PNNL',
+    '128-627_Run-1000.txt' : 'CFILT-2',
+    'keys-wn.2' : 'UMCC-DLSI',
+    'SMUaw-' : 'SMUaw'
+}
+
+old2new = {'sval2' : 'se2-aw',
+           'sval3' : 'se3-aw',
+           'sval2007': 'se7-aw',
+           'sval2010': 'se10-aw',
+           'sval2013' : 'se13-aw'}
+
+
 class MFS_or_not_MFS():
     '''
     using the global variables defined in ../plots_mfs_vs_not_mfs.sh
@@ -76,19 +93,34 @@ class MFS_or_not_MFS():
                     
                     system_keys = [answer_el.get('value')
                                    for answer_el in system_el.iterfind('answer')]
+
+
+                    system_name = system_el.get("id")
+                    try:
+                        system_rank = rankings[system_name]
+                    except KeyError:
+                        pass
+
+                    allowed = False
+                    if all([isinstance(system_rank, int),
+                            system_rank <= 1]):
+                        allowed = True
                     
-                    #check if answer was correct
+                    # check if answer was correct
                     answer = 0
-                    
-                    if any([system_key in gold 
+                    if any([system_key in gold
                             for system_key in system_keys]):
                         answer = 1
 
-                    if mfs:
-                        acc_mfs.append(answer)
-                        
-                    else:
-                        acc_notmfs.append(answer)
+
+                    if allowed:
+                        assert system_name in filename2official_name
+
+                        if mfs:
+                            acc_mfs.append(answer)
+
+                        else:
+                            acc_notmfs.append(answer)
                 
 
             #if competition != "sval2010":
@@ -102,9 +134,9 @@ class MFS_or_not_MFS():
         matplotlib.rc('font', family='sans-serif') 
         matplotlib.rc('font', serif='times') 
         matplotlib.rc('text', usetex='false') 
-        matplotlib.rcParams.update({'font.size': 15})
+        matplotlib.rcParams.update({'font.size': 20})
         
-        fig = plt.figure()
+        fig = plt.figure(figsize=(16, 10))
         ax = fig.add_subplot(111)
         
         ## the data
@@ -128,18 +160,20 @@ class MFS_or_not_MFS():
         # axes and labels
         ax.set_xlim(-width,len(ind)+width)
         ax.set_ylim(0,100)
-        ax.set_ylabel('Accuracy')
-        ax.set_title('Accuracy on MFS vs LFS')
-        xTickMarks = self.labels
+        ax.set_xlabel('Senseval/SemEval competition')
+        ax.set_ylabel('Recall')
+        ax.set_title('Recall on MFS vs LFS of top ranked systems')
+        xTickMarks = [old2new[label] for label in self.labels]
         ax.set_xticks(ind+width)
         xtickNames = ax.set_xticklabels(xTickMarks)
-        plt.setp(xtickNames, rotation=45, fontsize=10)
+        plt.setp(xtickNames, rotation=60, fontsize=20)
         
         ## add a legend
         ax.legend( (rects1[0], rects2[0]), ('MFS', 'LFS') )
         
         #save
-        plt.savefig(os.environ['output_pdf'])    
+
+        plt.savefig(os.environ['output_pdf'], bbox_inches='tight')
         
 if __name__ == "__main__":
     MFS_or_not_MFS()    

@@ -5,8 +5,8 @@ export cwd=/${PWD#*/}
 function gs_stats () {
 
 #do analysis
-for com in sval2 sval3 sval2007 sval2010 sval2013; 
-do 
+for com in sval2 sval3 sval2007 sval2010 sval2013;
+do
 	result=$(bash provide_stats_gs.sh $com)
 done
 
@@ -17,7 +17,7 @@ cat $cwd/output/gs_stats/gs_stats_table.tex
 
 }
 
-function mfs_plot () { 
+function mfs_plot () {
 
 echo '% created with function mfs_plot in clin2015.sh'
 bash plots_mfs_vs_notmfs.sh
@@ -42,7 +42,7 @@ function logistic_regression_on_gs () {
 
 echo '% created with function logistic_regression_on_gs in clin2015.sh'
 #do analysis
-#for com in sval2 sval3 sval2007 sval2010 sval2013; 
+#for com in sval2 sval3 sval2007 sval2010 sval2013;
 #do
 #	bash logistic_regression_on_gs.sh $com n_v_r_a num_senses---occurs_in_x_num_docs
 #	bash logistic_regression_on_gs.sh $com n_v_r_a len_sentence---avg_num_senses_in_sentence---num_senses---pos---rel_freq---total_occurences---occurs_in_x_num_docs
@@ -57,8 +57,8 @@ function logistic_regression () {
 echo '% created with function logistic_regression on clin2015.sh'
 echo
 #do analysis
-bash logistic_regression.sh sval2_sval3_sval2007_sval2010_sval2013 n_v_r_a num_senses---copula---rel_freq---avg_num_senses_in_sentence---MFS 1 no 
-bash logistic_regression.sh sval2_sval3_sval2007_sval2010_sval2013 n_v_r_a num_senses---copula---rel_freq---avg_num_senses_in_sentence---MFS 50 yes 
+bash logistic_regression.sh sval2_sval3_sval2007_sval2010_sval2013 n_v_r_a num_senses---copula---rel_freq---avg_num_senses_in_sentence---MFS 1 no
+bash logistic_regression.sh sval2_sval3_sval2007_sval2010_sval2013 n_v_r_a num_senses---copula---rel_freq---avg_num_senses_in_sentence---MFS 50 yes
 
 #-num_senses is significant for all settings
 #-for best systems: posv is not significant, it is for all
@@ -75,7 +75,7 @@ export average=$(bash monosemous_errors.sh sval2_sval3_sval2007_sval2013 1000 ye
 export top=$(bash monosemous_errors.sh sval2_sval3_sval2007_sval2013 1 no)
 python lib/monosemous_errors_plotting.py
 
-echo 
+echo
 echo '% created with function monosemous_errors in clin2015.sh'
 echo 'monosemous errors plot can be found here:'
 echo $cwd/output/monosemous_errors/monosemous_errors.pdf
@@ -121,17 +121,14 @@ bash precision_plotting.sh sval2_sval3_sval2007_sval2010_sval2013 freq_class 1 n
 #mfs_plot
 
 #echo
-#echo 'Part of speech errors'
-#echo
-#pos_errors
+echo 'Part of speech errors'
+echo
+pos_errors
 
 #echo
+#echo 'gold standard plots'
 #plots_gold_standards
 
 #echo
-echo 'Logistic regression on gold standards'
-logistic_regression_on_gs
-
-
-
-
+#echo 'Logistic regression on gold standards'
+#logistic_regression_on_gs

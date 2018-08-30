@@ -11,6 +11,8 @@ Besides the built-in modules, there are additional modules used:
 * lxml (lxml.etree version 3.3.5 was used)
 * matplotlib (version 1.4.2 was used)
 * numpy       (version 1.9.1 of numpy was used)
+* seaborn (version 0.9.0 was used)
+* pandas (version 0.23.4 was used)
 
 ## Python modules for Python 3.6
 Besides the built-in modules, there are additional modules used:

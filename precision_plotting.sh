@@ -25,6 +25,7 @@ export feature=$2
 export rankings=$3
 export unranked=$4
 export output_path_pdf=$cwd/output/pos_errors/$competitions+++$feature+++$rankings+++$unranked.pdf
+export barplot_path_pdf=$cwd/output/pos_errors/$competitions+++$feature+++$rankings+++$unranked__barplot.pdf
 
 #call python script
 python lib/precision_plotting.py

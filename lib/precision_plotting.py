@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 from precision_plotting_utils import plot
 import pandas
 import seaborn
+import matplotlib
 
 
 
@@ -69,7 +70,7 @@ class PrecisionPlotting():
         list_of_lists = []
         headers = ['POS', 'Competition (System)', 'Recall']
 
-        for feature_value in ['n', 'v', 'a', 'r']:
+        for feature_value in ['a', 'n', 'r', 'v']:
             for competition in ['sval2', 'sval3', 'sval2007', 'sval2010', 'sval2013']:
                 for (the_competition, system_name), answers in self.data[feature_value].iteritems():
 
@@ -84,11 +85,18 @@ class PrecisionPlotting():
         plt.figure(figsize=(15, 8))
         df = pandas.DataFrame(list_of_lists, columns=headers)
         ax = seaborn.barplot(x='POS', y='Recall', hue='Competition (System)', data=df)
-        ax.legend(loc=2, title='Competition (Top System overall $F_{1}$)')
-        ax.set_title('Recall per part of speech for each top ranked system')
+        ax.legend(loc=2, title='Competition (Top System overall $F_{1}$)', fontsize=11)
+        ax.set_title('Recall per part of speech for each top ranked system', fontsize=16)
+
+        matplotlib.rcParams.update({'font.size': 16})
+
+        plt.xlabel('POS', fontsize=16)
+        plt.ylabel('Recall', fontsize=16)
+        plt.xticks(fontsize=16)
+        plt.yticks(fontsize=16)
 
         output_path = os.environ['barplot_path_pdf']
-        plt.savefig(output_path)
+        plt.savefig(output_path, bbox_inches='tight')
 
         print 'barplot saved to', output_path
 

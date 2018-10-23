@@ -76,7 +76,15 @@ plt.yticks(size=16)
 rects = ax.patches
 
 # Make some labels.
-labels = list(plot_df['Year'])
+labels = []
+for index, row in plot_df.iterrows():
+
+    if row['In_competition'] == 'yes':
+        label = f'{row["Year"]} (IN)'
+    else:
+        label = f'{row["Year"]}'
+
+    labels.append(label)
 
 for rect, label in zip(rects, labels):
     height = rect.get_height()
@@ -85,7 +93,7 @@ for rect, label in zip(rects, labels):
             label,
             size=16,
             ha='center', va='bottom')
-
+    
 # add title
 ax.set_title('$F_1$ development over the years for %s' % the_competition, fontsize=18)
 

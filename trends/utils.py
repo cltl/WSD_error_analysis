@@ -41,7 +41,7 @@ def load_relevant_data_from_rows(comp_df, competition):
     :return: df with relevant data
     """
     list_of_lists = []
-    headers = ['Year', 'F1', 'System', 'Competition']
+    headers = ['Year', 'F1', 'System', 'Competition', 'In_competition']
 
     for system in set(comp_df.label):
         system_df = comp_df[comp_df.label == system]
@@ -67,7 +67,7 @@ def load_relevant_data_from_rows(comp_df, competition):
         #    label = f'{shortname}'
         label = f'{shortname}'
 
-        one_row = [int(year), float(f1), str(label), competition]
+        one_row = [int(year), float(f1), str(label), competition, row['in_competition']]
         list_of_lists.append(one_row)
 
 

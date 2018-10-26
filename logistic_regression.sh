@@ -29,7 +29,7 @@ export allowed_pos=$2
 export features=$3
 export rankings=$4
 export unranked=$5
-export output_path=$cwd/output/logistic_regression/$competitions+++$allowed_pos+++$features.csv
+export output_path=$cwd/output/logistic_regression/$rankings+++$competitions+++$allowed_pos+++$features.csv
 export output_stat=$output_path.txt
 export model_Rscript=$cwd/lib/model_logistic_regression.R
 export Rscript=$cwd/lib/logistic_regression.R
@@ -46,4 +46,4 @@ Rscript lib/logistic_regression.R > $output_stat
 #echo convert output to latex tables
 python lib/latex_tables.py -i $output_stat -t logistic_regression
 echo 
-cat $output_stat.tex
+#cat $output_stat.tex

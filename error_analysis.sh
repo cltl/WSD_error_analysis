@@ -57,8 +57,8 @@ function logistic_regression () {
 echo '% created with function logistic_regression on clin2015.sh'
 echo
 #do analysis
-bash logistic_regression.sh sval2_sval3_sval2007_sval2010_sval2013 n_v_r_a num_senses---copula---rel_freq---avg_num_senses_in_sentence---MFS 1 no
-bash logistic_regression.sh sval2_sval3_sval2007_sval2010_sval2013 n_v_r_a num_senses---copula---rel_freq---avg_num_senses_in_sentence---MFS 50 yes
+bash logistic_regression.sh sval2_sval3_sval2007_sval2010_sval2013 n_v_r_a num_senses---copula---rel_freq---avg_num_senses_in_sentence---MFS---len_sentence 1-3 no
+#bash logistic_regression.sh sval2_sval3_sval2007_sval2010_sval2013 n_v_r_a num_senses---copula---rel_freq---avg_num_senses_in_sentence---MFS---len_sentence 2-10 no
 
 #-num_senses is significant for all settings
 #-for best systems: posv is not significant, it is for all
@@ -112,18 +112,18 @@ bash precision_plotting.sh sval2_sval3_sval2007_sval2010_sval2013 freq_class 1 n
 	#pos
 	#len\_sentence
 #echo
-#echo 'Logistic regression'
-#logistic_regression
-#echo
+echo 'Logistic regression'
+logistic_regression
+echo
 
 #echo
 #echo 'mfs plot'
 #mfs_plot
 
 #echo
-echo 'Part of speech errors'
-echo
-pos_errors
+#echo 'Part of speech errors'
+#echo
+#pos_errors
 
 #echo
 #echo 'gold standard plots'

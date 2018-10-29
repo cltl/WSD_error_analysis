@@ -1,5 +1,5 @@
 import pandas
-
+import math
 
 def extract_relevant_rows(df, sense_repository, the_competitions):
     """
@@ -50,6 +50,10 @@ def load_relevant_data_from_rows(comp_df, competition):
             continue
 
         highest_row = system_df['F1'].argmax()
+
+        if math.isnan(highest_row):
+            print(f'no F1 value for {system}')
+            continue
 
         rows = system_df.loc[[highest_row]]
         assert len(rows) == 1

@@ -37,6 +37,7 @@ if not os.path.exists(arguments['--output_folder']):
     os.mkdir(arguments['--output_folder'])
 
 output_path = os.path.join(arguments['--output_folder'], arguments['--competitions'] + '.pdf')
+data_path = os.path.join(arguments['--output_folder'], arguments['--competitions'] + '.p')
 main_df = pandas.read_excel(arguments['--input_path'])
 the_competition = min(competitions)
 
@@ -86,7 +87,24 @@ for index, row in plot_df.iterrows():
 
     labels.append(label)
 
-for rect, label in zip(rects, labels):
+# best performing systems
+maximum = max(plot_df['F1'])
+
+print(plot_df)
+
+top_indices = set()
+for position, (index, row) in enumerate(plot_df.iterrows()):
+
+    if row['F1'] == maximum:
+        top_indices.add(position)
+
+        print(maximum, row['System'])
+
+for index, (rect, label) in enumerate(zip(rects, labels)):
+
+    if index in top_indices:
+        rect.set_hatch('*')
+
     height = rect.get_height()
     ax.text(rect.get_x() + rect.get_width() / 2,
             height,
@@ -102,4 +120,7 @@ plt.savefig(output_path)
 
 title = 'F1 development'
 
-print('saved to', output_path)
+plot_df.to_pickle(data_path)
+
+print('data saved to', data_path)
+print('plot saved to', output_path)

@@ -61,7 +61,7 @@ plot_df = plot_df.sort_values(by=['Year'], ascending=True)
 
 plt.figure(figsize=(20, 10))
 ax = sns.barplot(x='System', y='F1', data=plot_df,
-                 color='navy'
+                 color='grey'
                  #hue='Competition'
                  )
 
@@ -79,7 +79,6 @@ rects = ax.patches
 # Make some labels.
 labels = []
 for index, row in plot_df.iterrows():
-
     if row['In_competition'] == 'yes':
         label = f'{row["Year"]} (IN)'
     else:

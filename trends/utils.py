@@ -46,7 +46,8 @@ def load_relevant_data_from_rows(comp_df, competition):
     for system in set(comp_df.label):
         system_df = comp_df[comp_df.label == system]
 
-        if system == 'Google-LSTM':
+        if all([system == 'Google-LSTM',
+                competition in {'se2-aw', 'se2-aw-v2'}]):
             continue
 
         highest_row = system_df['F1'].argmax()

@@ -12,12 +12,20 @@ output_path = os.path.join(os.environ['cwd'],
                            'monosemous_errors.pdf')
 
 
+old2new = {'sval2' : 'se2-aw',
+           'sval3' : 'se3-aw',
+           'sval2007': 'se7-aw',
+           'sval2010': 'se10-aw',
+           'sval2013' : 'se13-aw'}
+
 x_average = []
 y_average = []
 with open(os.environ['average']) as infile:
         for line in infile:
-            competition,error_rate = line.strip().split("\t")
-            x_average.append(competition)
+            competition, error_rate = line.strip().split("\t")
+
+            new_label = old2new[competition]
+            x_average.append(new_label)
             y_average.append(float(error_rate))
 
 x_top = []

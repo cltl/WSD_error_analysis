@@ -52,10 +52,10 @@ class MonosemousErrors():
         'sval_systems' and create the output_path txt and pdf
         '''
         self.results = defaultdict(list)
-            
+
         #loop
         for competition,xml_file in self.com_to_xml.iteritems():
-            
+
             if competition not in self.competitions:
                 continue
             

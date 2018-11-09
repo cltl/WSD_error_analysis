@@ -10,6 +10,37 @@ category2abbreviation = {
 ordered_types = ['FS', 'KB (S)', 'KB (U)', 'Semi-S']
 
 
+def system_label2color(path):
+    """
+    map system to color
+
+    :param str path: path to 'System.xslx'
+
+    :rtype: dict
+    :return: system -> color
+    """
+    df = pandas.read_excel(path)
+
+    abbr_cat2color = {
+        'FS': 'mediumblue',
+        'KB (S)': 'orange',
+        'KB (U)': 'green',
+        'Semi-S': 'red'
+    }
+
+    system2color = dict()
+
+    for index, row in df.iterrows():
+        label = row['system']
+        full_cat = row['category']
+        abbr_cat = category2abbreviation[full_cat]
+        color = abbr_cat2color[abbr_cat]
+
+        system2color[label] = color
+
+    return system2color
+
+
 def extract_relevant_rows(df, sense_repository, the_competitions):
     """
 

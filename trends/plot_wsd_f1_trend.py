@@ -16,6 +16,9 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import matplotlib
 
+from matplotlib.patches import Patch
+from matplotlib.lines import Line2D
+
 
 # load arguments
 arguments = docopt(__doc__)
@@ -59,9 +62,9 @@ plot_df = plot_df.sort_values(by=['Year'], ascending=True)
 #plt.ylim(0.5, None)
 #ax = sns.catplot(x='Year', y='F1', data=plot_df, hue='System')
 
-plt.figure(figsize=(20, 10))
+plt.figure(figsize=(22, 10))
 ax = sns.barplot(x='System', y='F1', data=plot_df,
-                 color='grey'
+                 color='white'
                  #hue='Competition'
                  )
 
@@ -102,6 +105,9 @@ for position, (index, row) in enumerate(plot_df.iterrows()):
 
         print(maximum, row['System'])
 
+
+system2color = utils.system_label2color('Systems.xlsx')
+
 for index, (rect, label, system) in enumerate(zip(rects, labels, ordered_systems)):
 
     if index in top_indices:
@@ -109,24 +115,40 @@ for index, (rect, label, system) in enumerate(zip(rects, labels, ordered_systems
 
     size_ = 20
 
-    print(system, label)
     if 'se13-aw' in the_competition:
         size_ = 16
 
     height = rect.get_height()
     ax.text(rect.get_x() + rect.get_width() / 2,
-            height,
+            height + 0.01,
             label,
             size=size_,
             ha='center', va='bottom')
 
-print(ordered_systems)
+rects = ax.patches
+for index, (rect, label, system) in enumerate(zip(rects, labels, ordered_systems)):
+    color = system2color[system]
+    rect.set_edgecolor(color)
+    rect.set_linewidth(10)
 
 # add title
 ax.set_title('$F_1$ development over the years for %s' % the_competition, fontsize=30)
 
+# add legend
+#'FS': 'mediumblue',
+#'KB (S)': 'orange',
+#'KB (U)': 'green',
+#'Semi-S': 'red'
+
+legend_elements = [Patch(facecolor='white', edgecolor='mediumblue', linewidth=8, label='FS'),
+                   Patch(facecolor='white', edgecolor='orange', linewidth=8, label='KB (S)'),
+                   Patch(facecolor='white', edgecolor='green', linewidth=8, label='KB (U)'),
+                   Patch(facecolor='white', edgecolor='red', linewidth=8, label='Semi-S'),]
+lgd = ax.legend(handles=legend_elements, loc='center', fontsize=30, bbox_to_anchor=(1.1, 0.5))
+
+
 # save plot
-plt.savefig(output_path)
+plt.savefig(output_path, bbox_extra_artists=(lgd,), bbox_inches='tight')
 
 title = 'F1 development'
 

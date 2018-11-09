@@ -65,20 +65,21 @@ ax = sns.barplot(x='System', y='F1', data=plot_df,
                  #hue='Competition'
                  )
 
-ax.set_xlabel('System', fontsize=22)
-ax.set_ylabel('$F_1$', fontsize=22)
+ax.set_xlabel('System', fontsize=30)
+ax.set_ylabel('$F_1$', fontsize=30)
 plt.ylim(0.5, None)
 #plt.tight_layout()
-plt.subplots_adjust(bottom=0.25)
+plt.subplots_adjust(bottom=0.33)
 ax.set_xticklabels(plot_df['System'], rotation=90)
 
-plt.xticks(size=16)
-plt.yticks(size=16)
+plt.xticks(size=22)
+plt.yticks(size=22)
 rects = ax.patches
 
 # Make some labels.
 labels = []
 for index, row in plot_df.iterrows():
+
     if row['In_competition'] == 'yes':
         label = f'{row["Year"]} (IN)'
     else:
@@ -104,15 +105,21 @@ for index, (rect, label) in enumerate(zip(rects, labels)):
     if index in top_indices:
         rect.set_hatch('*')
 
+
+    size_ = 20
+
+    if 'se13-aw' in the_competition:
+        size_ = 16
+
     height = rect.get_height()
     ax.text(rect.get_x() + rect.get_width() / 2,
             height,
             label,
-            size=16,
+            size=size_,
             ha='center', va='bottom')
     
 # add title
-ax.set_title('$F_1$ development over the years for %s' % the_competition, fontsize=18)
+ax.set_title('$F_1$ development over the years for %s' % the_competition, fontsize=30)
 
 # save plot
 plt.savefig(output_path)

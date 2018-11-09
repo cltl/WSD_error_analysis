@@ -78,6 +78,7 @@ rects = ax.patches
 
 # Make some labels.
 labels = []
+ordered_systems = []
 for index, row in plot_df.iterrows():
 
     if row['In_competition'] == 'yes':
@@ -85,6 +86,7 @@ for index, row in plot_df.iterrows():
     else:
         label = f'{row["Year"]}'
 
+    ordered_systems.append(row['System'])
     labels.append(label)
 
 # best performing systems
@@ -100,14 +102,14 @@ for position, (index, row) in enumerate(plot_df.iterrows()):
 
         print(maximum, row['System'])
 
-for index, (rect, label) in enumerate(zip(rects, labels)):
+for index, (rect, label, system) in enumerate(zip(rects, labels, ordered_systems)):
 
     if index in top_indices:
         rect.set_hatch('*')
 
-
     size_ = 20
 
+    print(system, label)
     if 'se13-aw' in the_competition:
         size_ = 16
 
@@ -117,7 +119,9 @@ for index, (rect, label) in enumerate(zip(rects, labels)):
             label,
             size=size_,
             ha='center', va='bottom')
-    
+
+print(ordered_systems)
+
 # add title
 ax.set_title('$F_1$ development over the years for %s' % the_competition, fontsize=30)
 

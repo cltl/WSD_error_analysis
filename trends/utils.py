@@ -1,6 +1,15 @@
 import pandas
 import math
 
+category2abbreviation = {
+    'fully supervised' : 'FS',
+    'knowledge-based with supervision' : 'KB (S)',
+    'semi-supervised' : 'Semi-S',
+    'unsupervised knowledge-based' : 'KB (U)'}
+
+ordered_types = ['FS', 'KB (S)', 'KB (U)', 'Semi-S']
+
+
 def extract_relevant_rows(df, sense_repository, the_competitions):
     """
 

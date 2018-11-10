@@ -19,6 +19,8 @@ import matplotlib
 from matplotlib.patches import Patch
 from matplotlib.lines import Line2D
 
+matplotlib.rcParams['font.family'] = 'sans-serif'
+matplotlib.rcParams['font.sans-serif'] = ['Lucida Grande']
 
 # load arguments
 arguments = docopt(__doc__)
@@ -128,6 +130,7 @@ for index, (rect, label, system) in enumerate(zip(rects, labels, ordered_systems
 rects = ax.patches
 for index, (rect, label, system) in enumerate(zip(rects, labels, ordered_systems)):
     color = system2color[system]
+    print(system, color)
     rect.set_edgecolor(color)
     rect.set_linewidth(10)
 

@@ -68,11 +68,11 @@ seaborn.barplot(x='Year', y='Freq', data=plot_df, hue='Category')
 
 
 # Custom X axis
-plt.xticks(fontsize=16)
-plt.yticks(fontsize=16)
-plt.title('Number of publications per WSD category per year', fontsize=22)
-plt.xlabel("Publication Year", fontsize=20)
-plt.ylabel("# of publications", fontsize=20)
+plt.xticks(fontsize=20)
+plt.yticks(fontsize=20)
+plt.title('Number of publications per WSD category per year', fontsize=30)
+plt.xlabel("Publication Year", fontsize=22)
+plt.ylabel("# of publications", fontsize=22)
 plt.legend(fontsize=20)
 
 

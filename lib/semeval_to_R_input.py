@@ -91,8 +91,19 @@ class Semeval2R():
                             for key in token_el.iterfind("gold_keys/key")]
                     
                     #set properties
-                    output = [info[identifier][feature]
-                              for feature in self.features]
+                    output = []
+                    for feature in self.features:
+                        value = info[identifier][feature]
+
+                        if feature == 'rel_freq':
+                            if value <= 0.0:
+                                value = 0
+                            else:
+                                value = round(value, 2)
+                        elif feature == 'avg_num_senses_in_sentence':
+                            value = round(value, 1)
+
+                        output.append(value)
                     
                     #loop over systems and write to file
                     for system_el in token_el.iterfind('systems/system'):

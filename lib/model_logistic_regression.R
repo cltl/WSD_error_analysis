@@ -1,6 +1,8 @@
 
 mydata <- read.csv("CSV_INPUT")
 
+summary(mydata)
+
 mydata$pos <- factor(mydata$pos,
                      levels = c("a", "n", "v"))
 mydata$pos = relevel(mydata$pos, ref="n")
@@ -21,6 +23,8 @@ cat("mcFadden R2=",R2,"\n")
 
 pR2 = 1 - glm1$deviance / glm1$null.deviance # works for glm
 cat(pR2)
+
+exp(coef(glm1))
 
 #R2<-1-exp((glm1$deviance-glm1$null.deviance)/2*n)
 #cat("Cox-Snell R2=",R2,"\n")

@@ -4,7 +4,7 @@ mydata <- read.csv("CSV_INPUT")
 summary(mydata)
 
 mydata$pos <- factor(mydata$pos,
-                     levels = c("a", "n", "v"))
+                     levels = c("n", "v"))
 mydata$pos = relevel(mydata$pos, ref="n")
 mydata$MFS = factor(mydata$MFS)
 

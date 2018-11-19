@@ -128,7 +128,8 @@ if args.type_of_analysis == "logistic_regression":
                     for counter,value in enumerate(values):
                         if counter in [1,2,3]:
                             try:
-                                value = str( round( float(value) ,3) )
+                                #value = str( round( float(value) ,3) )
+                                value = '{:.3f}'.format(round(float(value), 3))
                                 values[counter] = value
                             except:
                                 continue

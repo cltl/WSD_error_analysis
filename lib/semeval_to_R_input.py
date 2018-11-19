@@ -69,6 +69,9 @@ class Semeval2R():
             #write headers to file
             headers = ['correct'] + self.features
             outfile.write(",".join(headers)+"\n")
+
+            no_polysemy = defaultdict(set)
+            answer_is_u = defaultdict(set)
             
             #loop
             for competition,xml_file in self.com_to_xml.iteritems():
@@ -83,13 +86,21 @@ class Semeval2R():
                 #loop over tokens and create list with values
                 for token_el in doc.iterfind("token"):
 
-                    comp_stats[competition] += 1
 
                     #obtain gold keys
                     identifier = token_el.get("token_id")
                     gold = [key.get("value")
                             for key in token_el.iterfind("gold_keys/key")]
-                    
+
+                    if any([gold == ['U'],
+                            identifier == 'd001.s044.t009']):
+
+                        if gold == ['U']:
+                            answer_is_u[competition].add(identifier)
+                        continue
+
+                    comp_stats[competition] += 1
+
                     #set properties
                     output = []
                     for feature in self.features:
@@ -102,6 +113,11 @@ class Semeval2R():
                                 value = round(value, 2)
                         elif feature == 'avg_num_senses_in_sentence':
                             value = round(value, 1)
+
+
+                        if all([feature == 'num_senses',
+                                value <= 0]):
+                            no_polysemy[competition].add(identifier)
 
                         output.append(value)
                     
@@ -128,7 +144,7 @@ class Semeval2R():
                         system_keys = [answer_el.get('value')
                                        for answer_el in system_el.iterfind('answer')]
                         
-                        #check if answer was correct
+
                         answer = 0
                         if any([system_key in gold 
                                for system_key in system_keys]):
@@ -142,6 +158,14 @@ class Semeval2R():
                             to_file = [str(item) for item in to_file]
                             outfile.write(",".join(to_file)+"\n")
                             stats[(competition, identifier)][system_rank] = system_name
+
+
+        for competition, ids in no_polysemy.items():
+            print('POLYSEMY OF ZERO', competition, len(ids), ids)
+
+        for competition, ids in answer_is_u.items():
+            print('# of U answers', competition, len(ids))
+
         return stats, comp_stats
 
 

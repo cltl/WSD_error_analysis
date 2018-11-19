@@ -1,6 +1,7 @@
 #import built-in modules
 import os
 import cPickle
+from collections import defaultdict
 
 #installed module or modules in this folder
 from lxml import etree
@@ -63,7 +64,9 @@ class MFS_or_not_MFS():
         this method loops over the competitions in the folder
         'sval_systems' and updates the class attributes
         '''
-      
+
+        answer_is_u = defaultdict(set)
+
         #loop
         for competition,xml_file in self.com_to_xml.iteritems():
                 
@@ -84,6 +87,11 @@ class MFS_or_not_MFS():
                 identifier = token_el.get("token_id")
                 gold = [key.get("value")
                         for key in token_el.iterfind("gold_keys/key")]
+
+                if any([gold == ['U'],
+                        identifier == 'd001.s044.t009']):
+                    answer_is_u[competition].add(identifier)
+                    continue
                 
                 #check if gold is mfs
                 mfs = info[identifier]['MFS'] == "Yes_MFS"
@@ -121,11 +129,14 @@ class MFS_or_not_MFS():
 
                         else:
                             acc_notmfs.append(answer)
-                
+
 
             #if competition != "sval2010":
             self.mfs[competition]    = 100 * sum(acc_mfs)/float(len(acc_mfs))
             self.notmfs[competition] = 100 * sum(acc_notmfs)/float(len(acc_notmfs))
+
+        for competition, ids in answer_is_u.items():
+            print('# of U answers', competition, len(ids))
             
     def plot_it(self):
         '''

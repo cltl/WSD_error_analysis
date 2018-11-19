@@ -8,7 +8,6 @@ mydata$pos <- factor(mydata$pos,
 mydata$pos = relevel(mydata$pos, ref="n")
 mydata$MFS = factor(mydata$MFS)
 
-
 glm1 <- glm(correct ~ VARIABLES, data = mydata, family =  binomial("logit"))
 
 summary(glm1)

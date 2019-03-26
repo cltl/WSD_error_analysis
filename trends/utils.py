@@ -22,10 +22,10 @@ def system_label2color(path):
     df = pandas.read_excel(path)
 
     abbr_cat2color = {
-        'FS': 'mediumblue',
-        'KB (S)': 'orange',
-        'KB (U)': 'green',
-        'Semi-S': 'red'
+        'FS': '#0173B2', # mediumblue
+        'KB (S)': '#DE8F05', # orange
+        'KB (U)': '#029E73', # green
+        'Semi-S': '#D55E00' # red
     }
 
     system2color = dict()
@@ -90,7 +90,7 @@ def load_relevant_data_from_rows(comp_df, competition):
                 competition in {'se2-aw', 'se2-aw-v2'}]):
             continue
 
-        highest_row = system_df['F1'].argmax()
+        highest_row = system_df['F1'].idxmax()
 
         if math.isnan(highest_row):
             print(f'no F1 value for {system}')

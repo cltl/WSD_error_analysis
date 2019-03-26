@@ -41,8 +41,8 @@ ax     = fig.add_subplot(111)
 x_axis = range(len(x_average))
 
 
-plt.plot(x_axis, y_average,     label="average all systems")
-plt.plot(x_axis,     y_top,     label="top system")
+plt.plot(x_axis, y_average, linestyle='dashed',    label="average all systems")
+plt.plot(x_axis, y_top,     label="top system")
         
 plt.title("error rate monosemous instances per competition")
 plt.xlabel("semeval competition")

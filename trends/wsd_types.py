@@ -64,7 +64,7 @@ ax = plt.figure(figsize=(20,10))
 ax.gca().yaxis.set_major_locator(MaxNLocator(integer=True))
 
 
-seaborn.barplot(x='Year', y='Freq', data=plot_df, hue='Category')
+seaborn.barplot(x='Year', y='Freq', data=plot_df, hue='Category', palette='colorblind')
 
 
 # Custom X axis

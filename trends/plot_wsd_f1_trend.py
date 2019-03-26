@@ -16,10 +16,12 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import matplotlib
 
+import matplotlib.font_manager
+
 from matplotlib.patches import Patch
 from matplotlib.lines import Line2D
 
-matplotlib.rcParams['font.family'] = 'sans-serif'
+matplotlib.rcParams['font.family'] = 'serif'
 matplotlib.rcParams['font.sans-serif'] = ['Lucida Grande']
 
 # load arguments
@@ -66,9 +68,7 @@ plot_df = plot_df.sort_values(by=['Year'], ascending=True)
 
 plt.figure(figsize=(22, 10))
 ax = sns.barplot(x='System', y='F1', data=plot_df,
-                 color='white'
-                 #hue='Competition'
-                 )
+                 color='white')
 
 ax.set_xlabel('System', fontsize=30)
 ax.set_ylabel('$F_1$', fontsize=30)
@@ -143,10 +143,10 @@ ax.set_title('$F_1$ development over the years for %s' % the_competition, fontsi
 #'KB (U)': 'green',
 #'Semi-S': 'red'
 
-legend_elements = [Patch(facecolor='white', edgecolor='mediumblue', linewidth=8, label='FS'),
-                   Patch(facecolor='white', edgecolor='orange', linewidth=8, label='KB (S)'),
-                   Patch(facecolor='white', edgecolor='green', linewidth=8, label='KB (U)'),
-                   Patch(facecolor='white', edgecolor='red', linewidth=8, label='Semi-S'),]
+legend_elements = [Patch(facecolor='white', edgecolor='#0173B2', linewidth=8, label='FS'),
+                   Patch(facecolor='white', edgecolor='#DE8F05', linewidth=8, label='KB (S)'),
+                   Patch(facecolor='white', edgecolor='#029E73', linewidth=8, label='KB (U)'),
+                   Patch(facecolor='white', edgecolor='#D55E00', linewidth=8, label='Semi-S'),]
 lgd = ax.legend(handles=legend_elements, loc='center', fontsize=30, bbox_to_anchor=(1.1, 0.5))
 
 
